@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Protection Animale - Ensemble contre la cruauté</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1b1f23;
+      --accent: #d62828;
+      --bg-light: #f7f7f7;
+      --text: #333;
+      --transition: 0.3s;
+    }
+    * {margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
+    body {font-family:'Poppins',sans-serif;background:var(--bg-light);color:var(--text);}
+    header {
+      position:relative;
+      background:url('https://source.unsplash.com/NaGJGgsWtTk/1600x900') center/cover fixed;
+      height:35vh;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;
+    }
+    header::before {content:'';position:absolute;inset:0;background:rgba(0,0,0,0.6);}
+    header .inner {position:relative;z-index:1;animation:fadeUp 1s ease-out;}
+    header h1 {font-size:2.5rem;margin-bottom:0.5rem;}
+    header p {font-size:1.1rem;margin-bottom:1rem;}
+    header .btn {padding:0.8rem 1.8rem;background:var(--accent);color:#fff;text-decoration:none;font-weight:600;border-radius:0.4rem;transition:transform var(--transition);}
+    header .btn:hover {transform:translateY(-3px);}
+    nav {position:sticky;top:0;background:#fff;box-shadow:0 2px 5px rgba(0,0,0,0.1);z-index:10;}
+    nav ul {display:flex;justify-content:center;list-style:none;padding:1rem;}
+    nav li {margin:0 1.5rem;}
+    nav a {color:var(--text);text-decoration:none;font-weight:600;position:relative;transition:color var(--transition);}
+    nav a::after {content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--accent);transition:width var(--transition);}
+    nav a:hover {color:var(--accent);} nav a:hover::after {width:100%;}
+    section {max-width:1000px;margin:4rem auto;padding:0 1rem;opacity:0;animation:fadeIn 0.8s forwards;}
+    section:nth-child(odd) {animation-delay:0.2s;} section:nth-child(even) {animation-delay:0.4s;}
+    h2 {font-size:2rem;color:var(--primary);margin-bottom:1rem;}
+    p, li {margin-bottom:0.8rem;line-height:1.6;}
+    ul, ol {margin-left:1.6rem;margin-bottom:1rem;}
+    ul li, ol li {opacity:0;animation:slideIn 0.6s forwards;}
+    ul li:nth-child(1), ol li:nth-child(1) {animation-delay:0.3s;}
+    ul li:nth-child(2), ol li:nth-child(2) {animation-delay:0.6s;}
+    ul li:nth-child(3), ol li:nth-child(3) {animation-delay:0.9s;}
+    ul li:nth-child(4), ol li:nth-child(4) {animation-delay:1.2s;}
+    .background {position:relative;color:#fff;background-size:cover;background-position:center;}
+    .background::before {content:'';position:absolute;inset:0;background:rgba(0,0,0,0.5);}
+    .background .inner {position:relative;z-index:1;padding:4rem 1rem;}
+    .gallery {display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1rem;}
+    .gallery img {width:100%;height:150px;object-fit:cover;border-radius:0.5rem;transition:transform var(--transition);}
+    .gallery img:hover {transform:scale(1.05);}
+    /* Petitions */
+    .petitions ul {list-style:none;padding:0;margin:0;}
+    .petitions li {background:#fff;padding:1rem;margin-bottom:1rem;border-left:4px solid var(--accent);transition:background var(--transition);}
+    .petitions li:hover {background:#f1f1f1;}
+    .petitions a {text-decoration:none;color:var(--accent);font-weight:600;}
+    /* Testimonials */
+    .testimonials {display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;}
+    .testimonial {background:#fff;padding:1.5rem;border-radius:0.5rem;position:relative;animation:fadeIn 0.8s forwards;opacity:0;}
+    .testimonial:nth-child(1) {animation-delay:0.3s;} .testimonial:nth-child(2) {animation-delay:0.6s;} .testimonial:nth-child(3) {animation-delay:0.9s;}
+    .testimonial p {font-style:italic;margin-bottom:1rem;}
+    .testimonial h4 {margin-bottom:0.5rem;color:var(--primary);}
+    footer {text-align:center;padding:2rem 1rem;background:var(--primary);color:#fff;}
+    @keyframes fadeIn {from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);} }
+    @keyframes fadeUp {from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);} }
+    @keyframes slideIn {from{opacity:0;transform:translateX(-20px);}to{opacity:1;transform:translateX(0);} }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="inner">
+      <h1>Stop à la cruauté envers les animaux</h1>
+      <p>Élevages intensifs, abandons, abattoirs, laboratoires et braconnage : unissez-vous à notre combat.</p>
+      <a href="#causes" class="btn">Agir dès maintenant</a>
+    </div>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="#home">Accueil</a></li>
+      <li><a href="#causes">Nos causes</a></li>
+      <li><a href="#actions">Nos actions</a></li>
+      <li><a href="#participer">Participer</a></li>
+      <li><a href="#petitions">Pétitions</a></li>
+      <li><a href="#gallery">Galerie</a></li>
+      <li><a href="#testimonials">Avis</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <div id="home"></div>
+  <section id="causes">
+    <h2>Nos causes</h2>
+    <ul>
+      <li><strong>Élevages intensifs</strong> : conditions inhumaines, promiscuité et antibiotiques.</li>
+      <li><strong>Abandons</strong> : plus de 100 000 animaux abandonnés chaque année.</li>
+      <li><strong>Abattoirs</strong> : souffrances extrêmes et manque de contrôles.</li>
+      <li><strong>Tests en laboratoire</strong> : cosmétiques et pharmaceutiques testés sans alternatives.</li>
+      <li><strong>Braconnage</strong> : chasse illégale, trafic et extermination d’espèces.</li>
+    </ul>
+  </section>
+  <section id="actions" class="background" style="background-image:url('https://source.unsplash.com/hmVfCxkgLhw/1000x600')">
+    <div class="inner">
+      <h2>Nos actions</h2>
+      <ul>
+        <li>Manifestations pacifiques devant laboratoires et élevages.</li>
+        <li>Rencontres avec les élus pour faire évoluer la législation.</li>
+        <li>Sauvetages et relogements dans des refuges.</li>
+        <li>Opérations anti-braconnage et éducation des communautés.
+        <li>Création de contenus pédagogiques pour écoles et médias.</li>
+      </ul>
+    </div>
+  </section>
+  <section id="participer">
+    <h2>Comment participer</h2>
+    <ol>
+      <li>Signez et partagez nos pétitions.</li>
+      <li>Rejoignez nos bénévoles sur le terrain ou en ligne.</li>
+      <li>Faites un don pour soutenir nos refuges.</li>
+      <li>Adoptez ou parrainez un animal.</li>
+    </ol>
+  </section>
+  <section id="petitions">
+    <h2>Pétitions en cours</h2>
+    <div class="petitions">
+      <ul>
+        <li><a href="#">Interdiction de la ferme-usine de poulets</a></li>
+        <li><a href="#">Fin des tests cosmétiques sur animaux</a></li>
+        <li><a href="#">Renforcement des sanctions anti-braconnage</a></li>
+        <li><a href="#">Contrôle obligatoire des abattoirs</a></li>
+      </ul>
+    </div>
+  </section>
+  <section id="gallery">
+    <h2>Galerie</h2>
+    <div class="gallery">
+      <img src="https://source.unsplash.com/8oDNEW_kNAo/400x300" alt="Animaux en cage">
+      <img src="https://source.unsplash.com/TPfrwr4SgiY/400x300" alt="Husky emprisonné">
+      <img src="https://source.unsplash.com/SgHq2hVssyI/400x300" alt="Poulets en cage">
+      <img src="https://source.unsplash.com/hmVfCxkgLhw/400x300" alt="Éléphant en captivité">
+      <img src="https://source.unsplash.com/vw__b8xLFQw/400x300" alt="Mur message stop cruauté">
+    </div>
+  </section>
+  <section id="testimonials">
+    <h2>Avis & Témoignages</h2>
+    <div class="testimonials">
+      <div class="testimonial">
+        <p>“Grâce à cette association, j'ai pu parrainer un chien sauvé, et voir son adoption me comble de joie.”</p>
+        <h4>— Marie, Paris</h4>
+      </div>
+      <div class="testimonial">
+        <p>“J'ai participé à une manifestation anti-braconnage en Afrique, une expérience bouleversante.”</p>
+        <h4>— David, Lyon</h4>
+      </div>
+      <div class="testimonial">
+        <p>“Les ateliers pédagogiques en école sont une vraie réussite pour sensibiliser les enfants.”</p>
+        <h4>— Sophie, Marseille</h4>
+      </div>
+    </div>
+  </section>
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Pour plus d’informations ou pour rejoindre nos actions :</p>
+    <p>Email : <a href="mailto:protection@animale.org" style="color:var(--accent);">protection@animale.org</a></p>
+    <p>Téléphone : <a href="tel:+33123456789" style="color:var(--accent);">01 23 45 67 89</a></p>
+  </section>
+  <footer>
+    <p>&copy; 2025 Protection Animale. Votre voix compte.</p>
+  </footer>
+</body>
+</html>
