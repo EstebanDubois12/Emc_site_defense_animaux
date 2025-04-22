@@ -4,165 +4,1667 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Protection Animale - Ensemble contre la cruauté</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #1b1f23;
-      --accent: #d62828;
-      --bg-light: #f7f7f7;
-      --text: #333;
-      --transition: 0.3s;
-    }
-    * {margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
-    body {font-family:'Poppins',sans-serif;background:var(--bg-light);color:var(--text);}
-    header {
-      position:relative;
-      background:url('https://source.unsplash.com/NaGJGgsWtTk/1600x900') center/cover fixed;
-      height:35vh;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;
-    }
-    header::before {content:'';position:absolute;inset:0;background:rgba(0,0,0,0.6);}
-    header .inner {position:relative;z-index:1;animation:fadeUp 1s ease-out;}
-    header h1 {font-size:2.5rem;margin-bottom:0.5rem;}
-    header p {font-size:1.1rem;margin-bottom:1rem;}
-    header .btn {padding:0.8rem 1.8rem;background:var(--accent);color:#fff;text-decoration:none;font-weight:600;border-radius:0.4rem;transition:transform var(--transition);}
-    header .btn:hover {transform:translateY(-3px);}
-    nav {position:sticky;top:0;background:#fff;box-shadow:0 2px 5px rgba(0,0,0,0.1);z-index:10;}
-    nav ul {display:flex;justify-content:center;list-style:none;padding:1rem;}
-    nav li {margin:0 1.5rem;}
-    nav a {color:var(--text);text-decoration:none;font-weight:600;position:relative;transition:color var(--transition);}
-    nav a::after {content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--accent);transition:width var(--transition);}
-    nav a:hover {color:var(--accent);} nav a:hover::after {width:100%;}
-    section {max-width:1000px;margin:4rem auto;padding:0 1rem;opacity:0;animation:fadeIn 0.8s forwards;}
-    section:nth-child(odd) {animation-delay:0.2s;} section:nth-child(even) {animation-delay:0.4s;}
-    h2 {font-size:2rem;color:var(--primary);margin-bottom:1rem;}
-    p, li {margin-bottom:0.8rem;line-height:1.6;}
-    ul, ol {margin-left:1.6rem;margin-bottom:1rem;}
-    ul li, ol li {opacity:0;animation:slideIn 0.6s forwards;}
-    ul li:nth-child(1), ol li:nth-child(1) {animation-delay:0.3s;}
-    ul li:nth-child(2), ol li:nth-child(2) {animation-delay:0.6s;}
-    ul li:nth-child(3), ol li:nth-child(3) {animation-delay:0.9s;}
-    ul li:nth-child(4), ol li:nth-child(4) {animation-delay:1.2s;}
-    .background {position:relative;color:#fff;background-size:cover;background-position:center;}
-    .background::before {content:'';position:absolute;inset:0;background:rgba(0,0,0,0.5);}
-    .background .inner {position:relative;z-index:1;padding:4rem 1rem;}
-    .gallery {display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1rem;}
-    .gallery img {width:100%;height:150px;object-fit:cover;border-radius:0.5rem;transition:transform var(--transition);}
-    .gallery img:hover {transform:scale(1.05);}
-    /* Petitions */
-    .petitions ul {list-style:none;padding:0;margin:0;}
-    .petitions li {background:#fff;padding:1rem;margin-bottom:1rem;border-left:4px solid var(--accent);transition:background var(--transition);}
-    .petitions li:hover {background:#f1f1f1;}
-    .petitions a {text-decoration:none;color:var(--accent);font-weight:600;}
-    /* Testimonials */
-    .testimonials {display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;}
-    .testimonial {background:#fff;padding:1.5rem;border-radius:0.5rem;position:relative;animation:fadeIn 0.8s forwards;opacity:0;}
-    .testimonial:nth-child(1) {animation-delay:0.3s;} .testimonial:nth-child(2) {animation-delay:0.6s;} .testimonial:nth-child(3) {animation-delay:0.9s;}
-    .testimonial p {font-style:italic;margin-bottom:1rem;}
-    .testimonial h4 {margin-bottom:0.5rem;color:var(--primary);}
-    footer {text-align:center;padding:2rem 1rem;background:var(--primary);color:#fff;}
-    @keyframes fadeIn {from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);} }
-    @keyframes fadeUp {from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);} }
-    @keyframes slideIn {from{opacity:0;transform:translateX(-20px);}to{opacity:1;transform:translateX(0);} }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+  :root {
+  --primary: #1b1f23;
+  --accent: #d62828;
+  --accent-light: #f4d6d6;
+  --accent-dark: #a61f1f;
+  --bg-light: #f9f9f9;
+  --text: #333;
+  --text-light: #666; /* Made darker for better contrast */
+  --nav-height: 60px;
+  --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --radius: 8px;
+  --shadow: 0 3px 8px rgba(0,0,0,0.08);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-height) + 20px);
+}
+
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+}
+
+body { 
+  font-family: 'Montserrat', sans-serif; 
+  background: var(--bg-light); 
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  padding-top: var(--nav-height); /* Added padding to prevent content from being hidden under nav */
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Navigation */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: var(--nav-height);
+  background: #fff;
+  box-shadow: var(--shadow);
+  z-index: 1000;
+  transition: all var(--transition);
+  display: flex;
+  align-items: center; /* Ensure vertical centering */
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding: 0 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%; /* Ensures full width containment */
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo i {
+  font-size: 1.3rem;
+  color: var(--accent);
+}
+
+.logo a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+  align-items: center;
+  margin: 0; /* Reset margin to ensure proper alignment */
+}
+
+nav a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+  position: relative;
+  transition: color var(--transition);
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width var(--transition);
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+.donate-btn {
+  background: var(--accent);
+  color: #fff !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: var(--radius);
+  transition: background var(--transition);
+}
+
+.donate-btn:hover {
+  background: var(--accent-dark);
+  transform: none;
+}
+
+.toggle-menu {
+  display: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* Header */
+header {
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+              url('/api/placeholder/1600/900') center/cover no-repeat fixed;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  margin-top: 0; /* Removed margin-top as we added padding to body */
+}
+
+header .inner {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+}
+
+header h1 {
+  font-size: 2.4rem;
+  line-height: 1.2;
+  margin-bottom: 1.2rem;
+  padding: 0 1rem;
+}
+
+header p {
+  font-size: 1.1rem;
+  color: #fff;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+  padding: 0 1rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.7rem 1.6rem;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: var(--radius);
+  transition: all var(--transition);
+  border: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: var(--accent-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  margin-left: 1rem;
+}
+
+.btn-outline:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Mission Statement */
+.mission {
+  background: #fff;
+  padding: 3rem 0;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.mission p {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  color: var(--text-light);
+}
+
+/* Sections */
+section {
+  padding: 4rem 0;
+}
+
+section.bg-light {
+  background: var(--bg-light);
+}
+
+section.bg-white {
+  background: #fff;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  position: relative;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background: var(--accent);
+}
+
+p, li {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  font-size: 1rem;
+  color: var(--text-light);
+}
+
+.section-intro {
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+
+ul, ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Two columns */
+.two-col {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.two-col > div {
+  flex: 1 1 350px;
+}
+
+/* Causes cards */
+.causes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.cause-card {
+  background: #fff;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform var(--transition);
+}
+
+.cause-card:hover {
+  transform: translateY(-5px);
+}
+
+.cause-img {
+  height: 180px;
+  overflow: hidden;
+}
+
+.cause-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.cause-card:hover .cause-img img {
+  transform: scale(1.1);
+}
+
+.cause-content {
+  padding: 1.5rem;
+}
+
+.cause-content h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+  color: var(--primary);
+}
+
+.cause-content p {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+/* Stats */
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: space-around;
+}
+
+.stat {
+  background: #fff;
+  flex: 1 1 220px;
+  padding: 2rem 1rem;
+  border-radius: var(--radius);
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: transform var(--transition);
+}
+
+.stat:hover {
+  transform: translateY(-5px);
+}
+
+.stat i {
+  font-size: 2.5rem;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.stat h3 {
+  font-size: 2.2rem;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.stat p {
+  font-size: 1rem;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* Actions background */
+.background {
+  position: relative;
+  color: #fff;
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+              url('/api/placeholder/1000/600') center/cover no-repeat fixed;
+  padding: 5rem 0;
+}
+
+.background p, .background li {
+  color: rgba(255, 255, 255, 0.85); /* Improved visibility for text on dark background */
+}
+
+.actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.action-item {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  transition: transform var(--transition);
+}
+
+.action-item:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.action-item i {
+  font-size: 2rem;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.action-item h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+}
+
+.action-item p {
+  color: rgba(255, 255, 255, 0.85); /* Improved text visibility */
+}
+
+/* Participate */
+.participate-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.participate-card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 2rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: all var(--transition);
+}
+
+.participate-card:hover {
+  transform: translateY(-5px);
+}
+
+.participate-card i {
+  font-size: 2.5rem;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.participate-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+/* Petitions */
+.petitions {
+  margin-top: 2rem;
+}
+
+.petitions ul {
+  list-style: none;
+  padding: 0;
+  margin: 0; /* Reset margin */
+}
+
+.petition-card {
+  background: #fff;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border-radius: var(--radius);
+  border-left: 4px solid var(--accent);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow);
+  transition: transform var(--transition);
+}
+
+.petition-card:hover {
+  transform: translateX(5px);
+}
+
+.petition-info {
+  flex: 1;
+}
+
+.petition-info h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.petition-info p {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.petition-count {
+  background: var(--accent-light);
+  color: var(--accent);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-left: 1rem;
+}
+
+.petition-card .btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+/* Testimonials */
+.testimonials {
+  position: relative;
+  margin-top: 3rem;
+  padding: 0 1rem;
+}
+
+.testimonial-slider {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  padding: 1rem 0.5rem;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.testimonial-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.testimonial-card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  min-width: 300px;
+  box-shadow: var(--shadow);
+  transition: transform var(--transition);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+}
+
+.testimonial-card .quote {
+  font-size: 2rem;
+  color: var(--accent-light);
+  margin-bottom: 1rem;
+}
+
+.testimonial-card p {
+  font-style: italic;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+}
+
+.author-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 1rem;
+  background: var(--accent-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.author-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.author-img i {
+  font-size: 1.5rem;
+  color: var(--accent);
+}
+
+.author-info h4 {
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.author-info p {
+  font-size: 0.8rem;
+  margin: 0;
+  font-style: normal;
+  color: var(--text-light);
+}
+
+.slider-nav {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  gap: 0.5rem;
+}
+
+.slider-nav button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fff;
+  border: none;
+  font-size: 1rem;
+  color: var(--accent);
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: all var(--transition);
+}
+
+.slider-nav button:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Gallery */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.gallery-item {
+  position: relative;
+  height: 200px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
+
+.gallery-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+
+.gallery-overlay i {
+  color: #fff;
+  font-size: 1.5rem;
+  transform: translateY(20px);
+  transition: transform var(--transition);
+}
+
+.gallery-item:hover .gallery-overlay i {
+  transform: translateY(0);
+}
+
+/* Contact */
+.contact-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.contact-info {
+  flex: 1 1 300px;
+}
+
+.contact-info h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  color: var(--primary);
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.contact-item i {
+  font-size: 1.2rem;
+  color: var(--accent);
+  margin-right: 1rem;
+  margin-top: 0.2rem;
+}
+
+.contact-item div h4 {
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+.contact-item div p {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--accent-light);
+  color: var(--accent);
+  border-radius: 50%;
+  text-decoration: none;
+  transition: all var(--transition);
+}
+
+.social-links a:hover {
+  background: var(--accent);
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+.contact-form {
+  flex: 1 1 450px;
+  background: #fff;
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.contact-form h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  color: var(--primary);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: var(--radius);
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color var(--transition);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+/* Newsletter */
+.newsletter {
+  background: var(--accent);
+  color: #fff;
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.newsletter h2 {
+  color: #fff;
+}
+
+.newsletter h2::after {
+  background: #fff;
+}
+
+.newsletter p {
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+.newsletter-form {
+  display: flex;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.newsletter-form input {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: var(--radius) 0 0 var(--radius);
+  font-size: 1rem;
+}
+
+.newsletter-form .btn {
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 0 1.5rem;
+  background: var(--primary);
+}
+
+.newsletter-form .btn:hover {
+  background: #000;
+}
+
+/* Footer */
+footer {
+  background: var(--primary);
+  color: #fff;
+  padding: 4rem 0 2rem;
+}
+
+footer p, footer li {
+  color: rgba(255, 255, 255, 0.7); /* Consistent text color in footer */
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.footer-col h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.footer-col h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: var(--accent);
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 0.8rem;
+}
+
+.footer-col ul li a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.footer-col ul li a:hover {
+  color: var(--accent);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-bottom p {
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+/* Back to top */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition);
+  z-index: 999;
+}
+
+.back-to-top.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  background: var(--accent-dark);
+  transform: translateY(-5px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  header h1 {
+    font-size: 2.2rem;
+  }
+  
+  .nav-container {
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    position: fixed;
+    top: var(--nav-height);
+    left: 0;
+    width: 100%;
+    background: #fff;
+    flex-direction: column;
+    padding: 1rem;
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    gap: 0.8rem; /* Increased spacing for better tap targets */
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    transition: clip-path 0.3s ease;
+  }
+
+  .nav-links.active {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+  
+  .nav-links li {
+    width: 100%;
+    margin: 0;
+  }
+  
+  .nav-links a {
+    display: block;
+    padding: 0.5rem 0;
+    font-size: 1rem;
+  }
+
+  .toggle-menu {
+    display: block;
+  }
+
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  header p {
+    font-size: 1rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+  
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  /* Improved card layout for small screens */
+  .cause-card, .action-item, .participate-card {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --nav-height: 55px;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .logo a {
+    font-size: 1rem;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+    padding: 0.7rem 1rem;
+  }
+  
+  .btn-outline {
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+  
+  .petition-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+  
+  .petition-count {
+    margin-left: 0;
+  }
+  
+  .newsletter-form {
+    flex-direction: column;
+  }
+  
+  .newsletter-form input {
+    border-radius: var(--radius);
+    margin-bottom: 1rem;
+  }
+  
+  .newsletter-form .btn {
+    border-radius: var(--radius);
+  }
+  
+  /* Improved spacing for testimonials on small screens */
+  .testimonial-card {
+    min-width: 260px;
+  }
+  
+  /* Better gallery grid for small screens */
+  .gallery {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}</style>
 </head>
 <body>
+  <nav>
+    <div class="nav-container">
+      <div class="logo">
+        <i class="fas fa-paw"></i>
+        <a href="#">Protection Animale</a>
+      </div>
+      <div class="toggle-menu" id="toggle-menu">
+        <i class="fas fa-bars"></i>
+      </div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#causes">Causes</a></li>
+        <li><a href="#actions">Actions</a></li>
+        <li><a href="#participer">Participer</a></li>
+        <li><a href="#petitions">Pétitions</a></li>
+        <li><a href="#testimonials">Témoignages</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#" class="donate-btn">Faire un don</a></li>
+      </ul>
+    </div>
+  </nav>
+  
   <header>
     <div class="inner">
       <h1>Stop à la cruauté envers les animaux</h1>
-      <p>Élevages intensifs, abandons, abattoirs, laboratoires et braconnage : unissez-vous à notre combat.</p>
-      <a href="#causes" class="btn">Agir dès maintenant</a>
+      <p>Élevages, abandons, abattoirs, laboratoires, braconnage : agissons ensemble pour protéger les animaux.</p>
+      <a href="#participer" class="btn">Rejoignez-nous</a>
+      <a href="#causes" class="btn btn-outline">En savoir plus</a>
     </div>
   </header>
-  <nav>
-    <ul>
-      <li><a href="#home">Accueil</a></li>
-      <li><a href="#causes">Nos causes</a></li>
-      <li><a href="#actions">Nos actions</a></li>
-      <li><a href="#participer">Participer</a></li>
-      <li><a href="#petitions">Pétitions</a></li>
-      <li><a href="#gallery">Galerie</a></li>
-      <li><a href="#testimonials">Avis</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-  <div id="home"></div>
-  <section id="causes">
-    <h2>Nos causes</h2>
-    <ul>
-      <li><strong>Élevages intensifs</strong> : conditions inhumaines, promiscuité et antibiotiques.</li>
-      <li><strong>Abandons</strong> : plus de 100 000 animaux abandonnés chaque année.</li>
-      <li><strong>Abattoirs</strong> : souffrances extrêmes et manque de contrôles.</li>
-      <li><strong>Tests en laboratoire</strong> : cosmétiques et pharmaceutiques testés sans alternatives.</li>
-      <li><strong>Braconnage</strong> : chasse illégale, trafic et extermination d’espèces.</li>
-    </ul>
+  
+  <div class="mission">
+    <div class="container">
+      <p>Nous sommes une association engagée pour la protection et le bien-être des animaux depuis 15 ans. Notre mission est de mettre fin à la cruauté et l'exploitation animale sous toutes ses formes par l'action directe, l'éducation et l'évolution des lois.</p>
+    </div>
+  </div>
+  
+  <section id="causes" class="bg-light">
+    <div class="container">
+      <h2>Nos causes</h2>
+      <div class="section-intro">
+        <p>Chaque jour, des millions d'animaux souffrent dans le monde. Nous intervenons dans plusieurs domaines pour mettre fin à ces abus et promouvoir un monde <p>Chaque jour, des millions d'animaux souffrent dans le monde. Nous intervenons dans plusieurs domaines pour mettre fin à ces abus et promouvoir un monde plus respectueux du vivant.</p>
+      </div>
+      
+      <div class="causes-grid">
+        <div class="cause-card">
+          <div class="cause-img">
+            <img src="/api/placeholder/400/300" alt="Élevages intensifs">
+          </div>
+          <div class="cause-content">
+            <h3>Élevages intensifs</h3>
+            <p>Des milliards d'animaux sont confinés dans des conditions déplorables, sans accès à l'extérieur, avec surpopulation et médication excessive.</p>
+            <a href="#" class="btn">En savoir plus</a>
+          </div>
+        </div>
+        
+        <div class="cause-card">
+          <div class="cause-img">
+            <img src="/api/placeholder/400/300" alt="Abandons">
+          </div>
+          <div class="cause-content">
+            <h3>Abandons</h3>
+            <p>Plus de 100 000 animaux sont abandonnés chaque année en France, avec un pic durant les vacances d'été. Nous luttons contre ce fléau.</p>
+            <a href="#" class="btn">En savoir plus</a>
+          </div>
+        </div>
+        
+        <div class="cause-card">
+          <div class="cause-img">
+            <img src="/api/placeholder/400/300" alt="Tests en laboratoire">
+          </div>
+          <div class="cause-content">
+            <h3>Tests en laboratoire</h3>
+            <p>Des millions d'animaux sont utilisés pour des tests cosmétiques et pharmaceutiques, malgré l'existence d'alternatives éthiques et efficaces.</p>
+            <a href="#" class="btn">En savoir plus</a>
+          </div>
+        </div>
+        
+        <div class="cause-card">
+          <div class="cause-img">
+            <img src="/api/placeholder/400/300" alt="Braconnage">
+          </div>
+          <div class="cause-content">
+            <h3>Braconnage</h3>
+            <p>Le trafic illégal d'espèces sauvages menace la biodiversité mondiale et contribue à la disparition de nombreuses espèces emblématiques.</p>
+            <a href="#" class="btn">En savoir plus</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
-  <section id="actions" class="background" style="background-image:url('https://source.unsplash.com/hmVfCxkgLhw/1000x600')">
-    <div class="inner">
+  
+  <section id="stats" class="bg-white">
+    <div class="container">
+      <h2>Notre impact</h2>
+      <div class="section-intro">
+        <p>Depuis notre création, nous avons obtenu des résultats concrets grâce à l'engagement de nos bénévoles et au soutien de nos donateurs.</p>
+      </div>
+      
+      <div class="stats">
+        <div class="stat">
+          <i class="fas fa-heart"></i>
+          <h3>5 000+</h3>
+          <p>Animaux sauvés</p>
+        </div>
+        
+        <div class="stat">
+          <i class="fas fa-file-signature"></i>
+          <h3>120 000+</h3>
+          <p>Pétitions signées</p>
+        </div>
+        
+        <div class="stat">
+          <i class="fas fa-users"></i>
+          <h3>2 500+</h3>
+          <p>Bénévoles actifs</p>
+        </div>
+        
+        <div class="stat">
+          <i class="fas fa-globe-europe"></i>
+          <h3>150</h3>
+          <p>Actions internationales</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section id="actions" class="background">
+    <div class="container">
       <h2>Nos actions</h2>
-      <ul>
-        <li>Manifestations pacifiques devant laboratoires et élevages.</li>
-        <li>Rencontres avec les élus pour faire évoluer la législation.</li>
-        <li>Sauvetages et relogements dans des refuges.</li>
-        <li>Opérations anti-braconnage et éducation des communautés.
-        <li>Création de contenus pédagogiques pour écoles et médias.</li>
-      </ul>
-    </div>
-  </section>
-  <section id="participer">
-    <h2>Comment participer</h2>
-    <ol>
-      <li>Signez et partagez nos pétitions.</li>
-      <li>Rejoignez nos bénévoles sur le terrain ou en ligne.</li>
-      <li>Faites un don pour soutenir nos refuges.</li>
-      <li>Adoptez ou parrainez un animal.</li>
-    </ol>
-  </section>
-  <section id="petitions">
-    <h2>Pétitions en cours</h2>
-    <div class="petitions">
-      <ul>
-        <li><a href="#">Interdiction de la ferme-usine de poulets</a></li>
-        <li><a href="#">Fin des tests cosmétiques sur animaux</a></li>
-        <li><a href="#">Renforcement des sanctions anti-braconnage</a></li>
-        <li><a href="#">Contrôle obligatoire des abattoirs</a></li>
-      </ul>
-    </div>
-  </section>
-  <section id="gallery">
-    <h2>Galerie</h2>
-    <div class="gallery">
-      <img src="https://source.unsplash.com/8oDNEW_kNAo/400x300" alt="Animaux en cage">
-      <img src="https://source.unsplash.com/TPfrwr4SgiY/400x300" alt="Husky emprisonné">
-      <img src="https://source.unsplash.com/SgHq2hVssyI/400x300" alt="Poulets en cage">
-      <img src="https://source.unsplash.com/hmVfCxkgLhw/400x300" alt="Éléphant en captivité">
-      <img src="https://source.unsplash.com/vw__b8xLFQw/400x300" alt="Mur message stop cruauté">
-    </div>
-  </section>
-  <section id="testimonials">
-    <h2>Avis & Témoignages</h2>
-    <div class="testimonials">
-      <div class="testimonial">
-        <p>“Grâce à cette association, j'ai pu parrainer un chien sauvé, et voir son adoption me comble de joie.”</p>
-        <h4>— Marie, Paris</h4>
+      <div class="section-intro">
+        <p>Nous agissons sur le terrain pour protéger les animaux et faire évoluer les mentalités. Découvrez nos principales interventions.</p>
       </div>
-      <div class="testimonial">
-        <p>“J'ai participé à une manifestation anti-braconnage en Afrique, une expérience bouleversante.”</p>
-        <h4>— David, Lyon</h4>
-      </div>
-      <div class="testimonial">
-        <p>“Les ateliers pédagogiques en école sont une vraie réussite pour sensibiliser les enfants.”</p>
-        <h4>— Sophie, Marseille</h4>
+      
+      <div class="actions-grid">
+        <div class="action-item">
+          <i class="fas fa-bullhorn"></i>
+          <h3>Manifestations pacifiques</h3>
+          <p>Organisation de manifestations devant les laboratoires, élevages et institutions pour sensibiliser le public et les décideurs.</p>
+        </div>
+        
+        <div class="action-item">
+          <i class="fas fa-gavel"></i>
+          <h3>Plaidoirie juridique</h3>
+          <p>Travail auprès des élus et institutions pour renforcer la législation sur la protection animale.</p>
+        </div>
+        
+        <div class="action-item">
+          <i class="fas fa-hands-helping"></i>
+          <h3>Sauvetages</h3>
+          <p>Interventions d'urgence pour secourir des animaux maltraités et les placer dans des refuges partenaires.</p>
+        </div>
+        
+        <div class="action-item">
+          <i class="fas fa-shield-alt"></i>
+          <h3>Anti-braconnage</h3>
+          <p>Opérations de terrain pour lutter contre le braconnage et le trafic d'espèces protégées.</p>
+        </div>
+        
+        <div class="action-item">
+          <i class="fas fa-graduation-cap"></i>
+          <h3>Éducation</h3>
+          <p>Ateliers pédagogiques dans les écoles et sensibilisation du grand public via des campagnes médiatiques.</p>
+        </div>
+        
+        <div class="action-item">
+          <i class="fas fa-seedling"></i>
+          <h3>Alternatives éthiques</h3>
+          <p>Promotion d'alternatives aux produits testés sur les animaux et aux pratiques d'élevage intensif.</p>
+        </div>
       </div>
     </div>
   </section>
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Pour plus d’informations ou pour rejoindre nos actions :</p>
-    <p>Email : <a href="mailto:protection@animale.org" style="color:var(--accent);">protection@animale.org</a></p>
-    <p>Téléphone : <a href="tel:+33123456789" style="color:var(--accent);">01 23 45 67 89</a></p>
+  
+  <section id="participer" class="bg-light">
+    <div class="container">
+      <h2>Comment participer</h2>
+      <div class="section-intro">
+        <p>Chacun peut contribuer à sa manière à la protection animale. Découvrez comment vous pouvez nous aider à faire la différence.</p>
+      </div>
+      
+      <div class="participate-grid">
+        <div class="participate-card">
+          <i class="fas fa-file-signature"></i>
+          <h3>Signer & partager</h3>
+          <p>Signez nos pétitions et partagez-les sur vos réseaux sociaux pour amplifier notre impact.</p>
+          <a href="#petitions" class="btn">Voir les pétitions</a>
+        </div>
+        
+        <div class="participate-card">
+          <i class="fas fa-hand-holding-heart"></i>
+          <h3>Devenir bénévole</h3>
+          <p>Rejoignez notre équipe de bénévoles pour agir sur le terrain ou à distance selon vos disponibilités.</p>
+          <a href="#" class="btn">Nous rejoindre</a>
+        </div>
+        
+        <div class="participate-card">
+          <i class="fas fa-donate"></i>
+          <h3>Faire un don</h3>
+          <p>Soutenez financièrement nos actions pour nous permettre de sauver plus d'animaux et d'améliorer leurs conditions.</p>
+          <a href="#" class="btn">Faire un don</a>
+        </div>
+        
+        <div class="participate-card">
+          <i class="fas fa-home"></i>
+          <h3>Adopter ou parrainer</h3>
+          <p>Offrez une seconde chance à un animal en l'adoptant ou en le parrainant dans l'un de nos refuges partenaires.</p>
+          <a href="#" class="btn">En savoir plus</a>
+        </div>
+      </div>
+    </div>
   </section>
+  
+  <section id="petitions" class="bg-white">
+    <div class="container">
+      <h2>Pétitions en cours</h2>
+      <div class="section-intro">
+        <p>Voici les pétitions actuellement en cours. Chaque signature compte pour faire avancer la cause animale.</p>
+      </div>
+      
+      <div class="petitions">
+        <ul>
+          <li class="petition-card">
+            <div class="petition-info">
+              <h3>Interdiction des élevages de poulets en cage</h3>
+              <p>Pour mettre fin à la souffrance de millions de poulets en batterie.</p>
+            </div>
+            <span class="petition-count">32 458 signatures</span>
+            <a href="#" class="btn">Signer</a>
+          </li>
+          
+          <li class="petition-card">
+            <div class="petition-info">
+              <h3>Abolition des tests cosmétiques sur animaux</h3>
+              <p>Pour une interdiction totale et sans exception des tests sur animaux dans l'industrie cosmétique.</p>
+            </div>
+            <span class="petition-count">47 921 signatures</span>
+            <a href="#" class="btn">Signer</a>
+          </li>
+          
+          <li class="petition-card">
+            <div class="petition-info">
+              <h3>Renforcement des lois anti-braconnage</h3>
+              <p>Pour des sanctions plus sévères contre les braconniers et trafiquants d'espèces protégées.</p>
+            </div>
+            <span class="petition-count">18 732 signatures</span>
+            <a href="#" class="btn">Signer</a>
+          </li>
+          
+          <li class="petition-card">
+            <div class="petition-info">
+              <h3>Inspection obligatoire des abattoirs</h3>
+              <p>Pour un système d'inspection indépendant et transparent dans tous les abattoirs du pays.</p>
+            </div>
+            <span class="petition-count">25 104 signatures</span>
+            <a href="#" class="btn">Signer</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  
+  <section id="testimonials" class="bg-light">
+    <div class="container">
+      <h2>Témoignages</h2>
+      <div class="section-intro">
+        <p>Découvrez les témoignages de nos bénévoles, adoptants et soutiens qui partagent leur expérience.</p>
+      </div>
+      
+      <div class="testimonials">
+        <div class="testimonial-slider" id="testimonial-slider">
+          <div class="testimonial-card">
+            <div class="quote"><i class="fas fa-quote-left"></i></div>
+            <p>"J'ai adopté Lucky grâce à l'association, et voir sa transformation est incroyable. D'un chien craintif à un compagnon joyeux et confiant, c'est une expérience qui a changé ma vie autant que la sienne."</p>
+            <div class="testimonial-author">
+              <div class="author-img">
+                <img src="/api/placeholder/100/100" alt="Claire">
+              </div>
+              <div class="author-info">
+                <h4>Claire Dubois</h4>
+                <p>Nice</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="testimonial-card">
+            <div class="quote"><i class="fas fa-quote-left"></i></div>
+            <p>"Sauver des animaux a donné un nouveau sens à ma vie. Chaque week-end passé comme bénévole me rappelle pourquoi notre action est si importante. Voir la reconnaissance dans leurs yeux est ma plus belle récompense."</p>
+            <div class="testimonial-author">
+              <div class="author-img">
+                <img src="/api/placeholder/100/100" alt="Lucas">
+              </div>
+              <div class="author-info">
+                <h4>Lucas Martin</h4>
+                <p>Rennes</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="testimonial-card">
+            <div class="quote"><i class="fas fa-quote-left"></i></div>
+            <p>"Nos ateliers en collège ont permis de sensibiliser plus de 300 élèves en 2024. Les voir s'investir pour la cause animale et changer leur regard est un espoir pour l'avenir."</p>
+            <div class="testimonial-author">
+              <div class="author-img">
+                <img src="/api/placeholder/100/100" alt="Emma">
+              </div>
+              <div class="author-info">
+                <h4>Emma Legrand</h4>
+                <p>Toulouse</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="testimonial-card">
+            <div class="quote"><i class="fas fa-quote-left"></i></div>
+            <p>"Participer aux campagnes anti-braconnage a été une expérience intense. Savoir que notre action a contribué à sauver plusieurs éléphants de braconniers est une fierté immense."</p>
+            <div class="testimonial-author">
+              <div class="author-img">
+                <img src="/api/placeholder/100/100" alt="Johan">
+              </div>
+              <div class="author-info">
+                <h4>Johan Petit</h4>
+                <p>Bordeaux</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="testimonial-card">
+            <div class="quote"><i class="fas fa-quote-left"></i></div>
+            <p>"Notre dernière pétition a recueilli 50 000 signatures en une semaine, un record ! C'est la preuve que de plus en plus de personnes se mobilisent pour les droits des animaux."</p>
+            <div class="testimonial-author">
+              <div class="author-img">
+                <img src="/api/placeholder/100/100" alt="Sophie">
+              </div>
+              <div class="author-info">
+                <h4>Sophie Moreau</h4>
+                <p>Marseille</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="slider-nav">
+          <button class="prev-btn" id="prev-btn"><i class="fas fa-chevron-left"></i></button>
+          <button class="next-btn" id="next-btn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="bg-white">
+    <div class="container">
+      <h2>Galerie</h2>
+      <div class="section-intro">
+        <p>Images et moments forts de nos actions et interventions pour la protection animale.</p>
+      </div>
+      
+      <div class="gallery">
+        <div class="gallery-item">
+          <img src="/api/placeholder/400/300" alt="Sauvetage d'animaux">
+          <div class="gallery-overlay">
+            <i class="fas fa-search-plus"></i>
+          </div>
+        </div>
+        
+        <div class="gallery-item">
+          <img src="/api/placeholder/400/300" alt="Manifestation pacifique">
+          <div class="gallery-overlay">
+            <i class="fas fa-search-plus"></i>
+          </div>
+        </div>
+        
+        <div class="gallery-item">
+          <img src="/api/placeholder/400/300" alt="Éducation et sensibilisation">
+          <div class="gallery-overlay">
+            <i class="fas fa-search-plus"></i>
+          </div>
+        </div>
+        
+        <div class="gallery-item">
+          <img src="/api/placeholder/400/300" alt="Protection d'espèces menacées">
+          <div class="gallery-overlay">
+            <i class="fas fa-search-plus"></i>
+          </div>
+        </div>
+        
+        <div class="gallery-item">
+          <img src="/api/placeholder/400/300" alt="Campagne anti-braconnage">
+          <div class="gallery-overlay">
+            <i class="fas fa-search-plus"></i>
+          </div>
+        </div>
+        
+        <div class="gallery-item">
+          <img src="/api/placeholder/400/300" alt="Adoption réussie">
+          <div class="gallery-overlay">
+            <i class="fas fa-search-plus"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section id="newsletter" class="newsletter">
+    <div class="container">
+      <h2>Restez informé</h2>
+      <p>Recevez notre newsletter mensuelle pour suivre nos actions, nos avancées et les prochains événements.</p>
+      <form class="newsletter-form">
+        <input type="email" placeholder="Votre adresse e-mail" required>
+        <button type="submit" class="btn">S'inscrire</button>
+      </form>
+    </div>
+  </section>
+  
+  <section id="contact" class="bg-light">
+    <div class="container">
+      <h2>Contactez-nous</h2>
+      <div class="section-intro">
+        <p>Une question, une suggestion ou envie de nous rejoindre ? N'hésitez pas à nous contacter.</p>
+      </div>
+      
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <h3>Nos coordonnées</h3>
+          
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <h4>Adresse</h4>
+              <p>123 Avenue des Animaux<br>75001 Paris, France</p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <div>
+              <h4>Téléphone</h4>
+              <p>+33 1 23 45 67 89</p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <h4>Email</h4>
+              <p>contact@protection-animale.org</p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <i class="fas fa-clock"></i>
+            <div>
+              <h4>Horaires</h4>
+              <p>Lundi - Vendredi: 9h - 18h<br>Samedi: 10h - 16h</p>
+            </div>
+          </div>
+          
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        
+        <div class="contact-form">
+          <h3>Envoyez-nous un message</h3>
+          <form>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Nom</label>
+                <input type="text" id="name" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="subject">Sujet</label>
+              <input type="text" id="subject" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" rows="5" required></textarea>
+            </div>
+            
+            <button type="submit" class="btn">Envoyer</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  
   <footer>
-    <p>&copy; 2025 Protection Animale. Votre voix compte.</p>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>Protection Animale</h3>
+          <p>Association engagée depuis 15 ans pour la protection et le bien-être animal. Ensemble, nous pouvons faire la différence.</p>
+        </div>
+        
+        <div class="footer-col">
+          <h3>Liens rapides</h3>
+          <ul>
+            <li><a href="#causes">Nos causes</a></li>
+            <li><a href="#actions">Nos actions</a></li>
+            <li><a href="#participer">Comment participer</a></li>
+            <li><a href="#petitions">Pétitions</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h3>Ressources</h3>
+          <ul>
+            <li><a href="#">À propos de nous</a></li>
+            <li><a href="#">Actualités</a></li>
+            <li><a href="#">Événements</a></li>
+            <li><a href="#">Rapport annuel</a></li>
+            <li><a href="#">Mentions légales</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h3>Nos partenaires</h3>
+          <ul>
+            <li><a href="#">SPA France</a></li>
+            <li><a href="#">WWF</a></li>
+            <li><a href="#">30 Millions d'Amis</a></li>
+            <li><a href="#">L214</a></li>
+            <li><a href="#">IFAW</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 Protection Animale. Tous droits réservés. Conçu avec <i class="fas fa-heart" style="color: var(--accent);"></i> pour les animaux.</p>
+      </div>
+    </div>
   </footer>
+  
+  <a href="#" class="back-to-top" id="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </a>
+  
+  <script>
+    // Menu mobile toggle
+    const toggleMenu = document.getElementById('toggle-menu');
+    const navLinks = document.getElementById('nav-links');
+    
+    toggleMenu.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+    
+    // Close menu when clicking on a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+    
+    // Testimonial slider
+    const slider = document.getElementById('testimonial-slider');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    
+    nextBtn.addEventListener('click', () => {
+      slider.scrollBy({ left: 320, behavior: 'smooth' });
+    });
+    
+    prevBtn.addEventListener('click', () => {
+      slider.scrollBy({ left: -320, behavior: 'smooth' });
+    });
+    
+    // Back to top button
+    const backToTopBtn = document.getElementById('back-to-top');
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.add('active');
+      } else {
+        backToTopBtn.classList.remove('active');
+      }
+    });
+    
+    backToTopBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    // Shrink header on scroll
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 100) {
+        nav.style.height = '60px';
+      } else {
+        nav.style.height = 'var(--nav-height)';
+      }
+    });
+  </script>
 </body>
 </html>
