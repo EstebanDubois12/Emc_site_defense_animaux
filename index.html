@@ -1059,7 +1059,64 @@ footer p, footer li {
   .gallery {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   }
-}</style>
+}
+
+/* Lightbox */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  padding: 2rem;
+}
+
+.lightbox.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-content {
+  max-width: 90%;
+  max-height: 90vh;
+  position: relative;
+}
+
+#lightbox-img {
+  max-width: 100%;
+  max-height: 70vh;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.lightbox-description {
+  padding: 1rem;
+  background: #fff;
+  border-radius: 0 0 8px 8px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.close {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  color: #fff;
+  font-size: 3rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close:hover {
+  color: var(--accent);
+}
+
+</style>
 </head>
 <body>
   <nav>
@@ -1616,15 +1673,14 @@ footer p, footer li {
         <div class="footer-col">
           <h3>Nos partenaires</h3>
           <ul>
-            <li><a href="#">SPA France</a></li>
-            <li><a href="#">WWF</a></li>
-            <li><a href="#">30 Millions d'Amis</a></li>
-            <li><a href="#">L214</a></li>
-            <li><a href="#">IFAW</a></li>
+            <li><a href="https://www.la-spa.fr" target="_blank" rel="noopener noreferrer">SPA France</a></li>
+            <li><a href="https://www.wwf.fr" target="_blank" rel="noopener noreferrer">WWF</a></li>
+            <li><a href="https://www.30millionsdamis.fr" target="_blank" rel="noopener noreferrer">30 Millions d'Amis</a></li>
+            <li><a href="https://www.l214.com" target="_blank" rel="noopener noreferrer">L214</a></li>
+            <li><a href="https://www.ifaw.org/fr" target="_blank" rel="noopener noreferrer">IFAW</a></li>
           </ul>
         </div>
       </div>
-      
       <div class="footer-bottom">
         <p>&copy; 2025 Protection Animale. Tous droits réservés. Conçu avec <i class="fas fa-heart" style="color: var(--accent);"></i> pour les animaux.</p>
       </div>
@@ -1635,7 +1691,49 @@ footer p, footer li {
     <i class="fas fa-arrow-up"></i>
   </a>
   
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox">
+  <span class="close">&times;</span>
+  <div class="lightbox-content">
+    <img id="lightbox-img" alt="Image en grand format">
+    <div id="lightbox-description" class="lightbox-description"></div>
+  </div>
+</div>
+
   <script>
+
+// Lightbox avec descriptions
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const lightboxDesc = document.getElementById('lightbox-description');
+const descriptions = [
+  "Sauvetage en urgence : nos bénévoles et les pompiers unissent leurs forces pour libérer des animaux piégés par une inondation dévastatrice.",
+  "Mobilisation pacifique : des défenseurs des droits des animaux protestent devant un abattoir pour exiger une fin aux souffrances inutiles.",
+  "Sensibilisation dès le plus jeune âge : un atelier interactif en école primaire pour éveiller les consciences à la protection animale.",
+  "Action écoresponsable : 675 kg de plastique retirés d’une plage en une journée grâce à la mobilisation de nos bénévoles.",
+  "Ensemble pour la vie sauvage : une campagne choc pour dénoncer la chasse, l’élevage intensif et le braconnage.",
+  "Nouvelle vie : l’émotion d’une bénévole qui offre enfin un foyer aimant à un chien rescapé de la maltraitance."
+];
+
+
+document.querySelectorAll('.gallery-item').forEach((item, index) => {
+  item.addEventListener('click', () => {
+    const imgSrc = item.querySelector('img').src;
+    lightboxImg.src = imgSrc;
+    lightboxDesc.textContent = descriptions[index];
+    lightbox.classList.add('active');
+  });
+});
+
+// Fermeture lightbox
+document.querySelectorAll('.close, #lightbox').forEach(el => {
+  el.addEventListener('click', (e) => {
+    if (e.target === el) {
+      lightbox.classList.remove('active');
+    }
+  });
+});
+
     // Menu mobile toggle
     const toggleMenu = document.getElementById('toggle-menu');
     const navLinks = document.getElementById('nav-links');
