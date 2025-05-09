@@ -1116,7 +1116,84 @@ footer p, footer li {
   color: var(--accent);
 }
 
-</style>
+/* Legal Framework Section */
+.legal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.legal-card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  transition: transform var(--transition);
+  border-top: 4px solid var(--accent);
+}
+
+.legal-card:hover {
+  transform: translateY(-5px);
+}
+
+.legal-card i {
+  font-size: 2.5rem;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.legal-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1.2rem;
+  color: var(--primary);
+}
+
+.legal-card ul {
+  margin-left: 0;
+  list-style-position: inside;
+}
+
+.legal-card ul li {
+  margin-bottom: 0.8rem;
+  line-height: 1.5;
+  font-size: 0.95rem;
+  color: var(--text-light);
+}
+
+.legal-card ul li strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .legal-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .legal-card {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .legal-card i {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .legal-card h3 {
+    font-size: 1.2rem;
+  }
+  
+  .legal-card ul li {
+    font-size: 0.9rem;
+  }
+}
+
+</style>	
 </head>
 <body>
   <nav>
@@ -1149,11 +1226,13 @@ footer p, footer li {
     </div>
   </header>
   
+
   <div class="mission">
     <div class="container">
       <p>Nous sommes une association engagée pour la protection et le bien-être des animaux depuis 15 ans. Notre mission est de mettre fin à la cruauté et l'exploitation animale sous toutes ses formes par l'action directe, l'éducation et l'évolution des lois.</p>
     </div>
   </div>
+
   
   <section id="causes" class="bg-light">
     <div class="container">
@@ -1227,6 +1306,37 @@ footer p, footer li {
             <p>La déforestation et l'urbanisation détruisent les écosystèmes naturels, mettant en péril d'innombrables espèces animales et leurs habitats essentiels à leur survie.</p>
             <a href="#" class="btn">En savoir plus</a>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+   <section id="legislation" class="bg-white">
+    <div class="container">
+      <h2>Cadre juridique</h2>
+      <div class="section-intro">
+        <p>La protection animale en France repose sur plusieurs textes de loi fondamentaux qui définissent le statut des animaux et encadrent leur protection.</p>
+      </div>
+      <div class="legal-grid">
+        <div class="legal-card">
+          <i class="fas fa-balance-scale"></i>
+          <h3>Lois principales</h3>
+          <ul>
+            <li><strong>Loi du 10 juillet 1976</strong> : Reconnaît l'animal comme "être sensible"</li>
+            <li><strong>Code rural (L214)</strong> : Définit les conditions de détention des animaux</li>
+            <li><strong>Code civil (Art. 515-14)</strong> : Établit que les animaux sont des "êtres vivants doués de sensibilité"</li>
+            <li><strong>Loi du 30 novembre 2021</strong> : Renforce la lutte contre la maltraitance animale</li>
+          </ul>
+        </div>
+        <div class="legal-card">
+          <i class="fas fa-gavel"></i>
+          <h3>Sanctions</h3>
+          <ul>
+            <li><strong>Mauvais traitements</strong> : Jusqu'à 750€ d'amende</li>
+            <li><strong>Actes de cruauté</strong> : Jusqu'à 3 ans d'emprisonnement et 45 000€ d'amende</li>
+            <li><strong>Abandon</strong> : Jusqu'à 3 ans d'emprisonnement et 45 000€ d'amende</li>
+            <li><strong>Sévices graves ou sexuels</strong> : Jusqu'à 5 ans d'emprisonnement et 75 000€ d'amende</li>
+          </ul>
         </div>
       </div>
     </div>
