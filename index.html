@@ -282,12 +282,81 @@ ul, ol {
   flex: 1 1 350px;
 }
 
-/* Causes cards */
+
+/* Correction de l'accolade parasite */
+/* ————————————————————————————————————————————————————————————
+   Styles pour la section des causes (mis à jour)
+   ———————————————————————————————————————————————————————————— */
+#causes {
+  background: var(--bg-light);
+  padding: 6rem 0;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--primary);
+  font-size: 2.25rem;
+  position: relative;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 3px;
+  background-color: var(--accent);
+  margin: 0.75rem auto 0;
+}
+
+.section-intro {
+  max-width: 750px;
+  margin: 0 auto 3rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-light);
+  text-align: center;
+}
+
+/* ————————————————————————————————————————————————————————————
+   Filtres
+   ———————————————————————————————————————————————————————————— */
+.causes-filter {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.filter-btn {
+  padding: 0.5rem 1.5rem;
+  border: 2px solid var(--primary);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--primary);
+  font-weight: 600;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.filter-btn:hover {
+  background: var(--accent-light);
+}
+
+.filter-btn.active {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: var(--shadow);
+}
+
+/* ————————————————————————————————————————————————————————————
+   Grille des causes
+   ———————————————————————————————————————————————————————————— */
 .causes-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
 }
 
 .cause-card {
@@ -295,14 +364,16 @@ ul, ol {
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow);
-  transition: transform var(--transition);
+  transition: var(--transition);
 }
 
 .cause-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 .cause-img {
+  position: relative;
   height: 180px;
   overflow: hidden;
 }
@@ -311,11 +382,23 @@ ul, ol {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s;
+  transition: var(--transition);
 }
 
 .cause-card:hover .cause-img img {
-  transform: scale(1.1);
+  transform: scale(1.05);
+}
+
+.cause-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
 }
 
 .cause-content {
@@ -323,16 +406,405 @@ ul, ol {
 }
 
 .cause-content h3 {
-  font-size: 1.2rem;
-  margin-bottom: 0.8rem;
   color: var(--primary);
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
 }
 
 .cause-content p {
-  font-size: 0.9rem;
+  color: var(--text-light);
   margin-bottom: 1rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 
+/* Progression */
+.cause-progress {
+  margin: 1rem 0;
+}
+
+.progress-bar {
+  height: 6px;
+  background: #e0e0e0;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.progress {
+  height: 100%;
+  background: var(--accent);
+  transition: var(--transition);
+}
+
+.progress-text {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+/* Boutons */
+.primary-btn {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.6rem 1.4rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  transition: var(--transition);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.primary-btn:hover {
+  background: var(--accent-dark);
+}
+
+.secondary-btn {
+  display: inline-block;
+  padding: 0.5rem 1.2rem;
+  border: 2px solid var(--accent);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--accent);
+  font-weight: 600;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.secondary-btn:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ————————————————————————————————————————————————————————————
+   Modales (design harmonisé)
+   ———————————————————————————————————————————————————————————— */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  width: 90%;
+  max-width: 800px;
+  max-height: 85vh;
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition);
+  overflow-y: auto;
+  z-index: 1001;
+}
+
+.modal.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition);
+  z-index: 1000;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.close-modal {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  color: #fff;
+  cursor: pointer;
+  transition: var(--transition);
+  line-height: 1;
+}
+
+.close-modal:hover {
+  transform: rotate(90deg);
+}
+
+.modal-header {
+  background: var(--primary);
+  color: #fff;
+  padding: 1.5rem;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.modal-tags {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.modal-tags .tag {
+  background: var(--accent-light);
+  color: var(--accent-dark);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.modal-tabs {
+  display: flex;
+  border-bottom: 2px solid #eee;
+  margin: 1.5rem var(--container-padding) 1rem;
+}
+
+.tab-btn {
+  flex: 1;
+  text-align: center;
+  padding: 0.75rem;
+  background: none;
+  border: none;
+  font-weight: 600;
+  color: var(--text-light);
+  cursor: pointer;
+  position: relative;
+  transition: var(--transition);
+}
+
+.tab-btn.active {
+  color: var(--primary);
+}
+
+.tab-btn.active::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--accent);
+  border-radius: var(--radius);
+}
+
+.tab-content {
+  display: none;
+  padding: 0 var(--container-padding) 1.5rem;
+}
+
+.tab-content.active {
+  display: block;
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Statistiques */
+.modal-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat-item {
+  background: var(--accent-light);
+  border-radius: var(--radius);
+  padding: 1rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.stat-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent-dark);
+}
+
+.stat-desc {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-top: 0.25rem;
+}
+
+/* Info grid inside modal */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.info-item h4 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary-dark);
+}
+
+.info-item p {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  line-height: 1.4;
+}
+
+/* Action cards inside modal */
+.action-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.action-card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 1rem;
+  box-shadow: var(--shadow);
+  text-align: left;
+}
+
+.action-icon {
+  font-size: 1.5rem;
+  color: var(--accent-dark);
+  margin-bottom: 0.5rem;
+}
+
+.action-status {
+  display: inline-block;
+  margin-top: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  background: var(--accent-light);
+  color: var(--accent-dark);
+  border-radius: var(--radius);
+  font-size: 0.8rem;
+}
+
+/* Timeline */
+.timeline {
+  border-left: 3px solid var(--accent);
+  padding-left: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 1.5rem;
+  padding-left: 1rem;
+}
+
+.timeline-date {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 0.25rem;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -9px;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+/* Help options */
+.help-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.help-option {
+  background: #fff;
+  border: 1px solid #ececec;
+  border-radius: var(--radius);
+  padding: 1rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.help-icon {
+  font-size: 1.6rem;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.help-option h4 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.social-share {
+  margin-top: 0.75rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.social-btn {
+  color: var(--primary);
+  transition: var(--transition);
+  font-size: 1.2rem;
+}
+
+.social-btn:hover {
+  color: var(--accent);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #causes {
+    padding: 4rem 0;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .causes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-header h2 {
+    font-size: 1.4rem;
+  }
+
+  .modal-tabs {
+    flex-direction: column;
+  }
+
+  .tab-btn {
+    padding: 1rem;
+    text-align: left;
+  }
+
+  .tab-btn.active::after {
+    left: 0;
+    width: 30px;
+  }
+}
 /* Stats */
 .stats {
   display: flex;
@@ -1290,83 +1762,1024 @@ footer p, footer li {
     </div>
   </div>
 
-  
-  <section id="causes" class="bg-light">
-    <div class="container">
-      <h2>Nos causes</h2>
-      <div class="section-intro">
-        <p>Chaque jour, des millions d'animaux souffrent dans le monde. Nous intervenons dans plusieurs domaines pour mettre fin à ces abus et promouvoir un monde plus respectueux du vivant.</p>
-      </div>
-      
-      <div class="causes-grid">
-        <div class="cause-card">
-          <div class="cause-img">
-            <img src="https://medias.reussir.fr/volailles/styles/normal_size/azblob/2023-06/IMG_7406.JPG.webp?itok=7PSIRtDO" alt="Élevages intensifs">
-          </div>
-          <div class="cause-content">
-            <h3>Élevages intensifs</h3>
-            <p>Des milliards d'animaux sont confinés dans des conditions déplorables, sans accès à l'extérieur, avec surpopulation et médication excessive.</p>
-            <a href="#" class="btn">En savoir plus</a>
-          </div>
-        </div>
-        
-        <div class="cause-card">
-          <div class="cause-img">
-            <img src="https://static.actu.fr/uploads/2019/06/AdobeStock_89312936-960x640.jpeg" alt="Abandons">
-          </div>
-          <div class="cause-content">
-            <h3>Abandons</h3>
-            <p>Plus de 100 000 animaux sont abandonnés chaque année en France, avec un pic durant les vacances d'été. Nous luttons contre ce fléau.</p>
-            <a href="#" class="btn">En savoir plus</a>
-          </div>
-        </div>
-        
-        <div class="cause-card">
-          <div class="cause-img">
-            <img src="https://images.theconversation.com/files/617052/original/file-20240903-16-4z0l5.jpg?ixlib=rb-4.1.0&rect=0%2C437%2C3695%2C2240&q=45&auto=format&w=926&fit=clip" alt="Tests en laboratoire">
-          </div>
-          <div class="cause-content">
-            <h3>Tests en laboratoire</h3>
-            <p>Des millions d'animaux sont utilisés pour des tests cosmétiques et pharmaceutiques, malgré l'existence d'alternatives éthiques et efficaces.</p>
-            <a href="#" class="btn">En savoir plus</a>
-          </div>
-        </div>
-        
-        <div class="cause-card">
-          <div class="cause-img">
-            <img src="https://static.nationalgeographic.fr/files/styles/image_3200/public/ok7.webp?w=1600&h=900" alt="Braconnage">
-          </div>
-          <div class="cause-content">
-            <h3>Braconnage</h3>
-            <p>Le trafic illégal d'espèces sauvages menace la biodiversité mondiale et contribue à la disparition de nombreuses espèces emblématiques.</p>
-            <a href="#" class="btn">En savoir plus</a>
-          </div>
-        </div>
+<section id="causes" class="bg-light">
+  <div class="container">
+    <h2 class="section-title">Nos causes</h2>
+    <div class="section-intro">
+      <p>Chaque jour, des millions d'animaux souffrent dans le monde. Notre association intervient dans plusieurs domaines prioritaires pour mettre fin à ces abus et promouvoir un monde plus respectueux du vivant. Découvrez nos principales causes et comment nous agissons concrètement.</p>
+    </div>
 
-        <div class="cause-card">
-          <div class="cause-img">
-            <img src="https://img.lemde.fr/2015/11/09/0/0/3500/2479/664/0/75/0/570412e_MB01_CALIFORNIA-SEAWORLD-_1109_11.JPG	" alt="Spectacles avec animaux">
+    <div class="causes-filter">
+      <button class="filter-btn active" data-filter="all">Toutes les causes</button>
+      <button class="filter-btn" data-filter="domestic">Animaux domestiques</button>
+      <button class="filter-btn" data-filter="wild">Animaux sauvages</button>
+      <button class="filter-btn" data-filter="farm">Animaux d'élevage</button>
+    </div>
+
+    <div class="causes-grid">
+      <!-- Carte Élevages intensifs -->
+      <div class="cause-card" data-category="farm">
+        <div class="cause-img">
+          <img src="/api/placeholder/400/300" alt="Élevages intensifs">
+          <div class="cause-badge">Priorité haute</div>
+        </div>
+        <div class="cause-content">
+          <h3>Élevages intensifs</h3>
+          <p>Des milliards d'animaux sont confinés dans des conditions déplorables, sans accès à l'extérieur, avec surpopulation et médication excessive.</p>
+          <div class="cause-progress">
+            <div class="progress-bar">
+              <div class="progress" style="width: 65%"></div>
+            </div>
+            <span class="progress-text">65% de l'objectif atteint</span>
           </div>
-          <div class="cause-content">
-            <h3>Spectacles avec animaux</h3>
-            <p>Cirques, delphinariums et autres attractions exploitent des animaux sauvages pour le divertissement, les privant de leurs comportements naturels et de leur dignité.</p>
-            <a href="#" class="btn">En savoir plus</a>
+          <button class="btn primary-btn open-modal" data-modal-id="modal-elevages">En savoir plus</button>
+        </div>
+      </div>
+
+      <!-- Carte Abandons -->
+      <div class="cause-card" data-category="domestic">
+        <div class="cause-img">
+          <img src="/api/placeholder/400/300" alt="Abandons">
+          <div class="cause-badge">Urgence saisonnière</div>
+        </div>
+        <div class="cause-content">
+          <h3>Abandons</h3>
+          <p>Plus de 100 000 animaux sont abandonnés chaque année en France, avec un pic durant les vacances d'été. Nous luttons contre ce fléau national.</p>
+          <div class="cause-progress">
+            <div class="progress-bar">
+              <div class="progress" style="width: 42%"></div>
+            </div>
+            <span class="progress-text">42% de l'objectif atteint</span>
+          </div>
+          <button class="btn primary-btn open-modal" data-modal-id="modal-abandons">En savoir plus</button>
+        </div>
+      </div>
+
+      <!-- Carte Tests en laboratoire -->
+      <div class="cause-card" data-category="wild domestic">
+        <div class="cause-img">
+          <img src="/api/placeholder/400/300" alt="Tests en laboratoire">
+          <div class="cause-badge">Mobilisation internationale</div>
+        </div>
+        <div class="cause-content">
+          <h3>Tests en laboratoire</h3>
+          <p>Des millions d'animaux sont utilisés pour des tests cosmétiques et pharmaceutiques, malgré l'existence d'alternatives éthiques et efficaces.</p>
+          <div class="cause-progress">
+            <div class="progress-bar">
+              <div class="progress" style="width: 78%"></div>
+            </div>
+            <span class="progress-text">78% de l'objectif atteint</span>
+          </div>
+          <button class="btn primary-btn open-modal" data-modal-id="modal-tests">En savoir plus</button>
+        </div>
+      </div>
+
+      <!-- Carte Braconnage -->
+      <div class="cause-card" data-category="wild">
+        <div class="cause-img">
+          <img src="/api/placeholder/400/300" alt="Braconnage">
+          <div class="cause-badge">Crise de biodiversité</div>
+        </div>
+        <div class="cause-content">
+          <h3>Braconnage</h3>
+          <p>Le trafic illégal d'espèces sauvages menace la biodiversité mondiale et contribue à la disparition de nombreuses espèces emblématiques.</p>
+          <div class="cause-progress">
+            <div class="progress-bar">
+              <div class="progress" style="width: 35%"></div>
+            </div>
+            <span class="progress-text">35% de l'objectif atteint</span>
+          </div>
+          <button class="btn primary-btn open-modal" data-modal-id="modal-braconnage">En savoir plus</button>
+        </div>
+      </div>
+
+      <!-- Carte Spectacles avec animaux -->
+      <div class="cause-card" data-category="wild">
+        <div class="cause-img">
+          <img src="/api/placeholder/400/300" alt="Spectacles avec animaux">
+          <div class="cause-badge">Victoires récentes</div>
+        </div>
+        <div class="cause-content">
+          <h3>Spectacles avec animaux</h3>
+          <p>Cirques, delphinariums et autres attractions exploitent des animaux sauvages pour le divertissement, les privant de leurs comportements naturels.</p>
+          <div class="cause-progress">
+            <div class="progress-bar">
+              <div class="progress" style="width: 82%"></div>
+            </div>
+            <span class="progress-text">82% de l'objectif atteint</span>
+          </div>
+          <button class="btn primary-btn open-modal" data-modal-id="modal-spectacles">En savoir plus</button>
+        </div>
+      </div>
+
+      <!-- Carte Destruction des habitats -->
+      <div class="cause-card" data-category="wild">
+        <div class="cause-img">
+          <img src="/api/placeholder/400/300" alt="Destruction des habitats">
+          <div class="cause-badge">Action globale</div>
+        </div>
+        <div class="cause-content">
+          <h3>Destruction des habitats</h3>
+          <p>La déforestation et l'urbanisation détruisent les écosystèmes naturels, mettant en péril d'innombrables espèces animales et leurs habitats essentiels.</p>
+          <div class="cause-progress">
+            <div class="progress-bar">
+              <div class="progress" style="width: 28%"></div>
+            </div>
+            <span class="progress-text">28% de l'objectif atteint</span>
+          </div>
+          <button class="btn primary-btn open-modal" data-modal-id="modal-habitats">En savoir plus</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modals -->
+  <!-- Modal Template -->
+  <template id="modal-template">
+    <div class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="modal-header">
+          <h2 class="modal-title"></h2>
+          <div class="modal-tags"></div>
+        </div>
+        <div class="modal-body">
+          <div class="modal-tabs">
+            <button class="tab-btn active" data-tab="probleme">Le problème</button>
+            <button class="tab-btn" data-tab="actions">Nos actions</button>
+            <button class="tab-btn" data-tab="resultats">Résultats</button>
+            <button class="tab-btn" data-tab="participer">Comment aider</button>
+          </div>
+          <div class="tab-content active" id="probleme">
+            <p>Contenu sur le problème spécifique.</p>
+          </div>
+          <div class="tab-content" id="actions">
+            <p>Contenu sur nos actions pour cette cause.</p>
+          </div>
+          <div class="tab-content" id="resultats">
+            <p>Contenu des résultats obtenus.</p>
+          </div>
+          <div class="tab-content" id="participer">
+            <p>Options pour participer et aider.</p>
           </div>
         </div>
-        
-        <div class="cause-card">
-          <div class="cause-img">
-            <img src="https://www.forets-champagne-bourgogne.fr/wp-content/uploads/2020/08/Quand-une-for%C3%AAt-br%C3%BBle-1.jpg" alt="Destruction des habitats">
-          </div>
-          <div class="cause-content">
-            <h3>Destruction des habitats</h3>
-            <p>La déforestation et l'urbanisation détruisent les écosystèmes naturels, mettant en péril d'innombrables espèces animales et leurs habitats essentiels à leur survie.</p>
-            <a href="#" class="btn">En savoir plus</a>
+        <div class="modal-footer">
+          <p><i>Tous les liens et situations sont fictifs et uniquement présents pour le devoir d'EMC.</i></p>
+          <div class="modal-cta">
+            <a href="#contact" class="btn primary-btn">Nous contacter</a>
+            <button class="btn secondary-btn close-modal-btn">Fermer</button>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </template>
+<!-- Modales enrichies (toutes causes) -->
+<!-- Modale Élevages intensifs -->
+<div id="modal-elevages" class="modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <div class="modal-header">
+      <h2>Élevages intensifs</h2>
+      <div class="modal-tags">
+        <span class="tag">Animaux d'élevage</span>
+        <span class="tag">Législation</span>
+        <span class="tag">Bien-être animal</span>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tabs">
+        <button class="tab-btn active" data-tab="probleme">Le problème</button>
+        <button class="tab-btn" data-tab="actions">Nos actions</button>
+        <button class="tab-btn" data-tab="resultats">Résultats</button>
+        <button class="tab-btn" data-tab="participer">Comment aider</button>
+      </div>
+
+      <div class="tab-content active" id="probleme">
+        <div class="modal-stats">
+          <div class="stat-item">
+            <span class="stat-number">83%</span>
+            <span class="stat-desc">des animaux d'élevage en Europe en conditions intensives</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">24h/24</span>
+            <span class="stat-desc">confinement permanent</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">75%</span>
+            <span class="stat-desc">des antibiotiques mondiaux destinés à l’élevage</span>
+          </div>
+        </div>
+        <h3>Le problème en détail</h3>
+        <p>L’élevage intensif concentre des milliers d’animaux dans des espaces très restreints, limitant leurs comportements naturels et générant stress, maladies et mortalité précoce.</p>
+        <div class="info-grid">
+          <div class="info-item">
+            <h4>Conditions de vie dégradées</h4>
+            <p>Confinement extrême, absence d’accès à l’extérieur, privation des comportements naturels.</p>
+          </div>
+          <div class="info-item">
+            <h4>Pratiques cruelles</h4>
+            <p>Mutilations sans anesthésie (castration, coupe de queue, épointage).</p>
+          </div>
+          <div class="info-item">
+            <h4>Risques sanitaires</h4>
+            <p>Usage massif d’antibiotiques, résistances bactériennes, zoonoses.</p>
+          </div>
+          <div class="info-item">
+            <h4>Impact environnemental</h4>
+            <p>Pollution, gaz à effet de serre, déforestation pour fourrage.</p>
+          </div>
+        </div>
+        <div class="modal-quote">
+          <blockquote>
+            « L’élevage intensif est l’une des plus grandes sources de souffrance animale industrielle. »
+          </blockquote>
+          <cite>— Comité d’éthique pour la protection animale, 2024</cite>
+        </div>
+      </div>
+
+      <div class="tab-content" id="actions">
+        <h3>Nos actions concrètes</h3>
+        <div class="action-cards">
+          <div class="action-card">
+            <div class="action-icon"><i class="fas fa-search"></i></div>
+            <h4>Enquêtes & investigations</h4>
+            <p>Visites sous couverture et reportage photo pour exposer les conditions réelles.</p>
+            <span class="action-status">En cours</span>
+          </div>
+          <div class="action-card">
+            <div class="action-icon"><i class="fas fa-bullhorn"></i></div>
+            <h4>Campagnes de sensibilisation</h4>
+            <p>Affiches, réseaux sociaux et conférences pour alerter citoyens et élus.</p>
+            <span class="action-status">Permanent</span>
+          </div>
+          <div class="action-card">
+            <div class="action-icon"><i class="fas fa-gavel"></i></div>
+            <h4>Plaidoyer législatif</h4>
+            <p>Lobbying auprès des parlementaires pour renforcer normes et contrôles.</p>
+            <span class="action-status">Prioritaire</span>
+          </div>
+          <div class="action-card">
+            <div class="action-icon"><i class="fas fa-hands-helping"></i></div>
+            <h4>Soutien aux alternatives</h4>
+            <p>Accompagnement des exploitations vers des modes plus respectueux.</p>
+            <span class="action-status">En développement</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="resultats">
+        <h3>Nos résultats</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">2021</div>
+            <div class="timeline-content">
+              <h4>Libération des poules en cage</h4>
+              <p>75% des supermarchés bannissent l’œuf de poules en batterie.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">2022</div>
+            <div class="timeline-content">
+              <h4>Caméras en abattoirs</h4>
+              <p>35% des abattoirs équipés après révélation de pratiques abusives.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">2023</div>
+            <div class="timeline-content">
+              <h4>Interdiction castration à vif</h4>
+              <p>Loi obligeant anesthésie des porcelets grâce à 380 000 signatures.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">2024</div>
+            <div class="timeline-content">
+              <h4>Label « Bien-être animal »</h4>
+              <p>Étiquetage transparent pour un choix consommateur éclairé.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="participer">
+        <h3>Comment aider</h3>
+        <div class="help-options">
+          <div class="help-option">
+            <div class="help-icon"><i class="fas fa-hand-paper"></i></div>
+            <h4>Signez la pétition</h4>
+            <p>Demandez l’interdiction des cages et l’amélioration des normes.</p>
+            <a href="#petitions" class="btn secondary-btn">Signer</a>
+          </div>
+          <div class="help-option">
+            <div class="help-icon"><i class="fas fa-euro-sign"></i></div>
+            <h4>Faire un don</h4>
+            <p>Financez nos enquêtes et actions juridiques.</p>
+            <a href="#dons" class="btn secondary-btn">Donner</a>
+          </div>
+          <div class="help-option">
+            <div class="help-icon"><i class="fas fa-shopping-basket"></i></div>
+            <h4>Consommez responsable</h4>
+            <p>Choisissez produits labellisés et réduisez votre consommation.</p>
+            <a href="#guide" class="btn secondary-btn">Guide</a>
+          </div>
+          <div class="help-option">
+            <div class="help-icon"><i class="fas fa-share-alt"></i></div>
+            <h4>Diffusez</h4>
+            <p>Partagez nos contenus et mobilisez votre réseau.</p>
+            <div class="social-share">
+              <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p><i>Tous liens et situations fictifs, devoir EMC.</i></p>
+      <div class="modal-cta">
+        <a href="#contact" class="btn primary-btn">Nous contacter</a>
+        <button class="btn secondary-btn close-modal-btn">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modale Abandons -->
+<div id="modal-abandons" class="modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <div class="modal-header">
+      <h2>Abandons</h2>
+      <div class="modal-tags">
+        <span class="tag">Animaux domestiques</span>
+        <span class="tag">Protection</span>
+        <span class="tag">Solidarité</span>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tabs">
+        <button class="tab-btn active" data-tab="probleme">Le problème</button>
+        <button class="tab-btn" data-tab="actions">Nos actions</button>
+        <button class="tab-btn" data-tab="resultats">Résultats</button>
+        <button class="tab-btn" data-tab="participer">Comment aider</button>
+      </div>
+
+      <div class="tab-content active" id="probleme">
+        <div class="modal-stats">
+          <div class="stat-item">
+            <span class="stat-number">100 000+</span>
+            <span class="stat-desc">abandons/an en France</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">Juil–Août</span>
+            <span class="stat-desc">pic estival</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">45%</span>
+            <span class="stat-desc">méconnaissance des soins</span>
+          </div>
+        </div>
+        <h3>Le problème en détail</h3>
+        <p>Chaque été, chiens et chats sont délaissés, souvent faute de solution de garde ou pour raisons financières. Beaucoup finissent errants ou en refuge.</p>
+        <div class="info-grid">
+          <div class="info-item">
+            <h4>Stress & maladies</h4>
+            <p>Malnutrition, déshydratation, troubles psychologiques.</p>
+          </div>
+          <div class="info-item">
+            <h4>Refuges saturés</h4>
+            <p>Capacité dépassée, animaux en box prolongés.</p>
+          </div>
+        </div>
+        <div class="modal-quote">
+          <blockquote>
+            « L’abandon est la pire des solitudes pour un animal fidèle. »
+          </blockquote>
+          <cite>— Fédération Refuges Animaliers, 2023</cite>
+        </div>
+      </div>
+
+      <div class="tab-content" id="actions">
+        <h3>Nos actions concrètes</h3>
+        <div class="action-cards">
+          <div class="action-card">
+            <div class="action-icon"><i class="fas fa-truck-loading"></i></div>
+            <h4>Collectes estivales</h4>
+            <p>Points relais sur routes touristiques.</p>
+            <span class="action-status">Annuel</span>
+          </div>
+          <div class="action-card">
+            <div class="action-icon"><i class="fas fa-home"></i></div>
+            <h4>Familles d’accueil</h4>
+            <p>Placement temporaire gratuit.</p>
+            <span class="action-status">Permanent</span>
+          </div>
+          <div class="action-card">
+            <div class="action-icon"><i class="fas fa-user-friends"></i></div>
+            <h4>Ateliers propriétaires</h4>
+            <p>Prévention via webinaires et rencontres.</p>
+            <span class="action-status">En cours</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="resultats">
+        <h3>Nos résultats</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">2022</div>
+            <div class="timeline-content">
+              <h4>-20% abandons</h4>
+              <p>Réduction sur la Côte d’Azur.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">2023</div>
+            <div class="timeline-content">
+              <h4>500 foyers</h4>
+              <p>Familles bénévoles recrutées.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="participer">
+        <h3>Comment aider</h3>
+        <div class="help-options">
+          <div class="help-option">
+            <div class="help-icon"><i class="fas fa-pencil-alt"></i></div>
+            <h4>Signez la charte</h4>
+            <p>Engagement contre l’abandon.</p>
+            <a href="#charte" class="btn secondary-btn">Signer</a>
+          </div>
+          <div class="help-option">
+            <div class="help-icon"><i class="fas fa-donate"></i></div>
+            <h4>Faire un don</h4>
+            <p>Financer l’accueil & soins.</p>
+            <a href="#dons" class="btn secondary-btn">Donner</a>
+          </div>
+          <div class="help-option">
+            <div class="help-icon"><i class="fas fa-share-alt"></i></div>
+            <h4>Relayer</h4>
+            <p>Partagez sur vos réseaux.</p>
+            <div class="social-share">
+              <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <p><i>Tous liens et situations fictifs, devoir EMC.</i></p>
+      <div class="modal-cta">
+        <a href="#contact" class="btn primary-btn">Nous contacter</a>
+        <button class="btn secondary-btn close-modal-btn">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modale Tests en laboratoire -->
+<div id="modal-tests" class="modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <div class="modal-header">
+      <h2>Tests en laboratoire</h2>
+      <div class="modal-tags">
+        <span class="tag">Animaux sauvages</span>
+        <span class="tag">Animaux domestiques</span>
+        <span class="tag">Alternatives</span>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tabs">
+        <button class="tab-btn active" data-tab="probleme">Le problème</button>
+        <button class="tab-btn" data-tab="actions">Nos actions</button>
+        <button class="tab-btn" data-tab="resultats">Résultats</button>
+        <button class="tab-btn" data-tab="participer">Comment aider</button>
+      </div>
+
+      <div class="tab-content active" id="probleme">
+        <div class="modal-stats">
+          <div class="stat-item">
+            <span class="stat-number">5 M+</span>
+            <span class="stat-desc">animaux testés/an en UE</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">200+</span>
+            <span class="stat-desc">produits cosmétiques concernés</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">0</span>
+            <span class="stat-desc">limite fédérale US pour tests sans alternatives</span>
+          </div>
+        </div>
+        <h3>Le problème en détail</h3>
+        <p>Cosmétiques, médicaments et produits chimiques sont testés sur des lapins, rats et cochons d’Inde, provoquant douleur, lésions et mortalité.</p>
+        <div class="info-grid">
+          <div class="info-item">
+            <h4>Douleurs inutiles</h4>
+            <p>Électrochocs, injections de toxines, privation alimentaire.</p>
+          </div>
+          <div class="info-item">
+            <h4>Alternatives existantes</h4>
+            <p>Tests in vitro, modélisation 3D, organoïdes.</p>
+          </div>
+        </div>
+        <div class="modal-quote">
+          <blockquote>
+            « Des méthodes sans animaux offrent des résultats plus fiables et éthiques. »
+          </blockquote>
+          <cite>— Commission Européenne, 2022</cite>
+        </div>
+      </div>
+
+      <div class="tab-content" id="actions">
+        <h3>Nos actions concrètes</h3>
+        <div class="action-cards">
+          <div class="action-card">
+            <div class="action-icon"><i class="fas fa-flask"></i></div>
+            <h4>Promotion d’in vitro</h4>
+            <p>Financement de laboratoires développant des modèles cellulaires.</p>
+            <span class="action-status">Permanent</span>
+          </div>
+          <div class="action-card">
+            <div class="action-icon"><i class="fas fa-bullhorn"></i></div>
+            <h4>Campagnes légales</h4>
+            <p>Pétitions et recours juridiques pour interdire les tests cruels.</p>
+            <span class="action-status">En cours</span>
+          </div>
+          <div class="action-card">
+            <div class="action-icon"><i class="fas fa-book"></i></div>
+            <h4>Guides pédagogiques</h4>
+            <p>Resources pour chercheurs et étudiants sur alternatives.</p>
+            <span class="action-status">En développement</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="resultats">
+        <h3>Nos résultats</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">2022</div>
+            <div class="timeline-content">
+              <h4>Directive UE 2022/XXXX</h4>
+              <p>Intègre alternatives pour 30 nouvelles substances.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">2023</div>
+            <div class="timeline-content">
+              <h4>Réduction de 15%</h4>
+              <p>Moins d’animaux testés grâce à nos partenariats R&D.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="participer">
+        <h3>Comment aider</h3>
+        <div class="help-options">
+          <div class="help-option">
+            <div class="help-icon"><i class="fas fa-pencil-alt"></i></div>
+            <h4>Signez nos pétitions</h4>
+            <p>Pour interdire les tests cosmétiques sur animaux.</p>
+            <a href="#petitions" class="btn secondary-btn">Signer</a>
+          </div>
+          <div class="help-option">
+            <div class="help-icon"><i class="fas fa-hands-helping"></i></div>
+            <h4>Soutenez R&D éthique</h4>
+            <p>Investissez dans les technologies sans animaux.</p>
+            <a href="#donations" class="btn secondary-btn">Donner</a>
+          </div>
+          <div class="help-option">
+            <div class="help-icon"><i class="fas fa-share-alt"></i></div>
+            <h4>Diffusez l’info</h4>
+            <p>Partagez nos rapports et guides.</p>
+            <div class="social-share">
+              <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <p><i>Tous liens et situations fictifs, devoir EMC.</i></p>
+      <div class="modal-cta">
+        <a href="#contact" class="btn primary-btn">Nous contacter</a>
+        <button class="btn secondary-btn close-modal-btn">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modale Braconnage -->
+<div id="modal-braconnage" class="modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <div class="modal-header">
+      <h2>Braconnage</h2>
+      <div class="modal-tags">
+        <span class="tag">Animaux sauvages</span>
+        <span class="tag">Protection internationale</span>
+        <span class="tag">Droit</span>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tabs">
+        <button class="tab-btn active" data-tab="probleme">Le problème</button>
+        <button class="tab-btn" data-tab="actions">Nos actions</button>
+        <button class="tab-btn" data-tab="resultats">Résultats</button>
+        <button class="tab-btn" data-tab="participer">Comment aider</button>
+      </div>
+      <div class="tab-content active" id="probleme">
+        <div class="modal-stats">
+          <div class="stat-item">
+            <span class="stat-number">7 000+</span>
+            <span class="stat-desc">espèces menacées</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">20 % </span>
+            <span class="stat-desc">démantelées via ONG</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">$23 Mds</span>
+            <span class="stat-desc">valeur du trafic illégal/an</span>
+          </div>
+        </div>
+        <h3>Le problème en détail</h3>
+        <p>Le braconnage alimente un commerce illégal qui décime lions, éléphants, rhinocéros et bien d’autres espèces pour ivoire, fourrure et médecine traditionnelle.</p>
+        <div class="info-grid">
+          <div class="info-item">
+            <h4>Disparition rapide</h4>
+            <p>Espèces décimées en quelques décennies.</p>
+          </div>
+          <div class="info-item">
+            <h4>Réseaux mafieux</h4>
+            <p>Organisation transnationale très lucrative.</p>
+          </div>
+        </div>
+        <div class="modal-quote">
+          <blockquote>
+            « Le braconnage est une guerre silencieuse contre la biodiversité. »
+          </blockquote>
+          <cite>— CITES, 2023</cite>
+        </div>
+      </div>
+      <div class="tab-content" id="actions">
+        <h3>Nos actions concrètes</h3>
+        <div class="action-cards">
+          <div class="action-card">
+            <div class="action-icon"><i class="fas fa-satellite"></i></div>
+            <h4>Surveillance satellite</h4>
+            <p>Repérage en temps réel des camps illégaux.</p>
+            <span class="action-status">En cours</span>
+          </div>
+          <div class="action-card">
+            <div class="action-icon"><i class="fas fa-shield-alt"></i></div>
+            <h4>Patrouilles sur le terrain</h4>
+            <p>Formation et équipement de rangers locaux.</p>
+            <span class="action-status">Prioritaire</span>
+          </div>
+          <div class="action-card">
+            <div class="action-icon"><i class="fas fa-gavel"></i></div>
+            <h4>Poursuites judiciaires</h4>
+            <p>Soutien aux poursuites contre trafiquants.</p>
+            <span class="action-status">Depuis 2022</span>
+          </div>
+        </div>
+      </div>
+      <div class="tab-content" id="resultats">
+        <h3>Nos résultats</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">2023</div>
+            <div class="timeline-content">
+              <h4>500 animaux libérés</h4>
+              <p>Éléphants, girafes, tortues repatriés.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">2024</div>
+            <div class="timeline-content">
+              <h4>120 arrestations</h4>
+              <p>Traficants traduits en justice.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-content" id="participer">
+        <h3>Comment aider</h3>
+        <div class="help-options">
+          <div class="help-option">
+            <div class="help-icon"><i class="fas fa-hands-helping"></i></div>
+            <h4>Devenez volontaire</h4>
+            <p>Accompagnez les patrouilles sur le terrain.</p>
+            <a href="#volunteer" class="btn secondary-btn">Participer</a>
+          </div>
+          <div class="help-option">
+            <div class="help-icon"><i class="fas fa-donate"></i></div>
+            <h4>Faire un don</h4>
+            <p>Financer les opérations anti-braconnage.</p>
+            <a href="#donations" class="btn secondary-btn">Donner</a>
+          </div>
+          <div class="help-option">
+            <div class="help-icon"><i class="fas fa-share-alt"></i></div>
+            <h4>Diffusez</h4>
+            <p>Partagez nos rapports d’enquête.</p>
+            <div class="social-share">
+              <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p><i>Tous liens et situations fictifs, devoir EMC.</i></p>
+      <div class="modal-cta">
+        <a href="#contact" class="btn primary-btn">Nous contacter</a>
+        <button class="btn secondary-btn close-modal-btn">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modale Spectacles avec animaux -->
+<div id="modal-spectacles" class="modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <div class="modal-header">
+      <h2>Spectacles avec animaux</h2>
+      <div class="modal-tags">
+        <span class="tag">Animaux sauvages</span>
+        <span class="tag">Bien-être</span>
+        <span class="tag">Éthique</span>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tabs">
+        <button class="tab-btn active" data-tab="probleme">Le problème</button>
+        <button class="tab-btn" data-tab="actions">Nos actions</button>
+        <button class="tab-btn" data-tab="resultats">Résultats</button>
+        <button class="tab-btn" data-tab="participer">Comment aider</button>
+      </div>
+      <div class="tab-content active" id="probleme">
+        <div class="modal-stats">
+          <div class="stat-item">
+            <span class="stat-number">300+</span>
+            <span class="stat-desc">cirques/delphinariums en EU</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">80%</span>
+            <span class="stat-desc">animaux captifs mal traités</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">0</span>
+            <span class="stat-desc">exercice naturel possible</span>
+          </div>
+        </div>
+        <h3>Le problème en détail</h3>
+        <p>Ces spectacles privent animaux sauvages de liberté, soumettant éléphants, dauphins et fauves à des entraînements violents et conditions inadaptées.</p>
+        <div class="info-grid">
+          <div class="info-item">
+            <h4>Stress chronique</h4>
+            <p>Captivité et apprentissage forcé.</p>
+          </div>
+          <div class="info-item">
+            <h4>Santé dégradée</h4>
+            <p>Maladies, fractures et décès prématurés.</p>
+          </div>
+        </div>
+        <div class="modal-quote">
+          <blockquote>
+            « Aucun animal sauvage ne naît pour divertir. »
+          </blockquote>
+          <cite>— L214 Éthique & Animaux, 2022</cite>
+        </div>
+      </div>
+      <div class="tab-content" id="actions">
+        <h3>Nos actions concrètes</h3>
+        <div class="action-cards">
+          <div class="action-card">
+            <div class="action-icon"><i class="fas fa-ban"></i></div>
+            <h4>Boycott & pétitions</h4>
+            <p>Appels au public et initiatives légales.</p>
+            <span class="action-status">Permanent</span>
+          </div>
+          <div class="action-card">
+            <div class="action-icon"><i class="fas fa-gavel"></i></div>
+            <h4>Actions légales</h4>
+            <p>Poursuites contre structures non conformes.</p>
+            <span class="action-status">En cours</span>
+          </div>
+          <div class="action-card">
+            <div class="action-icon"><i class="fas fa-hand-holding-heart"></i></div>
+            <h4>Soutien aux refuges</h4>
+            <p>Accueil d’animaux retirés des shows.</p>
+            <span class="action-status">Depuis 2023</span>
+          </div>
+        </div>
+      </div>
+      <div class="tab-content" id="resultats">
+        <h3>Nos résultats</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">2022</div>
+            <div class="timeline-content">
+              <h4>15 cirques fermés</h4>
+              <p>Sans éléphants en France.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">2023</div>
+            <div class="timeline-content">
+              <h4>10 delphinariums repensés</h4>
+              <p>Bassins élargis & enrichment.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-content" id="participer">
+        <h3>Comment aider</h3>
+        <div class="help-options">
+          <div class="help-option">
+            <div class="help-icon"><i class="fas fa-sign-language"></i></div>
+            <h4>Participez aux manifs</h4>
+            <p>Mobilisations pacifiques.</p>
+            <a href="#manifs" class="btn secondary-btn">Participer</a>
+          </div>
+          <div class="help-option">
+            <div class="help-icon"><i class="fas fa-handshake"></i></div>
+            <h4>Soutenez refuges</h4>
+            <p>Donnez pour hébergement et soins.</p>
+            <a href="#dons" class="btn secondary-btn">Donner</a>
+          </div>
+          <div class="help-option">
+            <div class="help-icon"><i class="fas fa-share-alt"></i></div>
+            <h4>Diffusez</h4>
+            <p>Partagez notre charte zéro-spectacle.</p>
+            <div class="social-share">
+              <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p><i>Tous liens et situations fictifs, devoir EMC.</i></p>
+      <div class="modal-cta">
+        <a href="#contact" class="btn primary-btn">Nous contacter</a>
+        <button class="btn secondary-btn close-modal-btn">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modale Destruction des habitats -->
+<div id="modal-habitats" class="modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <div class="modal-header">
+      <h2>Destruction des habitats</h2>
+      <div class="modal-tags">
+        <span class="tag">Animaux sauvages</span>
+        <span class="tag">Environnement</span>
+        <span class="tag">Conservation</span>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tabs">
+        <button class="tab-btn active" data-tab="probleme">Le problème</button>
+        <button class="tab-btn" data-tab="actions">Nos actions</button>
+        <button class="tab-btn" data-tab="resultats">Résultats</button>
+        <button class="tab-btn" data-tab="participer">Comment aider</button>
+      </div>
+      <div class="tab-content active" id="probleme">
+        <div class="modal-stats">
+          <div class="stat-item">
+            <span class="stat-number">100 M ha</span>
+            <span class="stat-desc">forêts perdues/an</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">80%</span>
+            <span class="stat-desc">perte d’espèces locales</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">50%</span>
+            <span class="stat-desc">écosystèmes menacés</span>
+          </div>
+        </div>
+        <h3>Le problème en détail</h3>
+        <p>Déforestation, urbanisation et agriculture intensive fragmentent et détruisent forêts, marécages et prairies, mettant en péril faune et flore.</p>
+        <div class="info-grid">
+          <div class="info-item">
+            <h4>Perte de biodiversité</h4>
+            <p>Espèces disparaissant faute d’habitat adapté.</p>
+          </div>
+          <div class="info-item">
+            <h4>Érosion & inondations</h4>
+            <p>Sol dégradé, cycles hydrologiques perturbés.</p>
+          </div>
+        </div>
+        <div class="modal-quote">
+          <blockquote>
+            « La protection des habitats est clé pour la survie des espèces. »
+          </blockquote>
+          <cite>— WWF, 2024</cite>
+        </div>
+      </div>
+      <div class="tab-content" id="actions">
+        <h3>Nos actions concrètes</h3>
+        <div class="action-cards">
+          <div class="action-card">
+            <div class="action-icon"><i class="fas fa-tree"></i></div>
+            <h4>Reforestation</h4>
+            <p>Plantation de 200 000 arbres en zones critiques.</p>
+            <span class="action-status">2024</span>
+          </div>
+          <div class="action-card">
+            <div class="action-icon"><i class="fas fa-route"></i></div>
+            <h4>Corridors écologiques</h4>
+            <p>Connexion d’habitats fragmentés.</p>
+            <span class="action-status">En cours</span>
+          </div>
+          <div class="action-card">
+            <div class="action-icon"><i class="fas fa-balance-scale"></i></div>
+            <h4>Plaidoyer légal</h4>
+            <p>Pression pour lois de protection territoriale.</p>
+            <span class="action-status">Prioritaire</span>
+          </div>
+        </div>
+      </div>
+      <div class="tab-content" id="resultats">
+        <h3>Nos résultats</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">2024</div>
+            <div class="timeline-content">
+              <h4>3 réserves créées</h4>
+              <p>Zones protégées en Amazonie et Afrique.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-content" id="participer">
+        <h3>Comment aider</h3>
+        <div class="help-options">
+          <div class="help-option">
+            <div class="help-icon"><i class="fas fa-hands-helping"></i></div>
+            <h4>Bénévole terrain</h4>
+            <p>Rejoignez nos chantiers verts.</p>
+            <a href="#volunteer" class="btn secondary-btn">Participer</a>
+          </div>
+          <div class="help-option">
+            <div class="help-icon"><i class="fas fa-euro-sign"></i></div>
+            <h4>Soutenez la plantation</h4>
+            <p>Parrainez la croissance d’un arbre.</p>
+            <a href="#sponsor" class="btn secondary-btn">Parrainer</a>
+          </div>
+          <div class="help-option">
+            <div class="help-icon"><i class="fas fa-share-alt"></i></div>
+            <h4>Partagez</h4>
+            <p>Diffusez nos initiatives de conservation.</p>
+            <div class="social-share">
+              <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p><i>Tous liens et situations fictifs, devoir EMC.</i></p>
+      <div class="modal-cta">
+        <a href="#contact" class="btn primary-btn">Nous contacter</a>
+        <button class="btn secondary-btn close-modal-btn">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</section>
+
+<div class="modal-overlay"></div>
+
+
+  
   
    <section id="legislation" class="bg-white">
     <div class="container">
@@ -1888,6 +3301,62 @@ footer p, footer li {
   </div>
 </div>
   <script>
+// Fonction pour le filtrage des causes
+  document.addEventListener('DOMContentLoaded', function() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const causeCards = document.querySelectorAll('.cause-card');
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        const filter = button.getAttribute('data-filter');
+        causeCards.forEach(card => {
+          if (filter === 'all' || card.getAttribute('data-category').includes(filter)) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Gestion des modales
+    const modalBtns = document.querySelectorAll('.open-modal');
+    const modalOverlay = document.querySelector('.modal-overlay');
+    const closeBtns = document.querySelectorAll('.close-modal, .close-modal-btn');
+    modalBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const modalId = btn.getAttribute('data-modal-id');
+        const modal = document.getElementById(modalId);
+        modal.classList.add('active');
+        modalOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeModals() {
+      document.querySelectorAll('.modal.active').forEach(modal => modal.classList.remove('active'));
+      modalOverlay.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+    closeBtns.forEach(btn => btn.addEventListener('click', closeModals));
+    modalOverlay.addEventListener('click', closeModals);
+
+    // Gestion des onglets
+    document.querySelectorAll('.modal-body').forEach(body => {
+      const tabBtns = body.querySelectorAll('.tab-btn');
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const tabId = btn.getAttribute('data-tab');
+          tabBtns.forEach(b => b.classList.remove('active'));
+          body.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+          btn.classList.add('active');
+          body.querySelector(`#${tabId}`).classList.add('active');
+        });
+      });
+    });
+  });
+
 // Lightbox avec descriptions
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
