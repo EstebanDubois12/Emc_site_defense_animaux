@@ -517,19 +517,14 @@ ul, ol {
   padding: 0 1rem;
 }
 
-.testimonial-slider {
+.testimonial-slider { 
   display: flex;
   gap: 1.5rem;
-  overflow-x: auto;
+  overflow-x: hidden; /* masque scroll natif */
+  scroll-behavior: auto;
+  cursor: default;
   padding: 1rem 0.5rem;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
 }
-
-.testimonial-slider::-webkit-scrollbar {
-  display: none;
-}
-
 .testimonial-card {
   background: #fff;
   border-radius: var(--radius);
@@ -594,32 +589,6 @@ ul, ol {
   font-style: normal;
   color: var(--text-light);
 }
-
-.slider-nav {
-  display: flex;
-  justify-content: center;
-  margin-top: 2rem;
-  gap: 0.5rem;
-}
-
-.slider-nav button {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #fff;
-  border: none;
-  font-size: 1rem;
-  color: var(--accent);
-  cursor: pointer;
-  box-shadow: var(--shadow);
-  transition: all var(--transition);
-}
-
-.slider-nav button:hover {
-  background: var(--accent);
-  color: #fff;
-}
-
 /* Gallery */
 .gallery {
   display: grid;
@@ -1590,92 +1559,160 @@ footer p, footer li {
     </div>
   </section>
   
-  <section id="testimonials" class="bg-light">
-    <div class="container">
-      <h2>Témoignages</h2>
-      <div class="section-intro">
-        <p>Découvrez les témoignages de nos bénévoles, adoptants et soutiens qui partagent leur expérience.</p>
-      </div>
-      
-      <div class="testimonials">
-        <div class="testimonial-slider" id="testimonial-slider">
-          <div class="testimonial-card">
-            <div class="quote"><i class="fas fa-quote-left"></i></div>
-            <p>"J'ai adopté Lucky grâce à l'association, et voir sa transformation est incroyable. D'un chien craintif à un compagnon joyeux et confiant, c'est une expérience qui a changé ma vie autant que la sienne."</p>
-            <div class="testimonial-author">
-              <div class="author-img">
-                <img src="https://www.photoprof.fr/images_dp/photographes/profil_vide.jpg" alt="Claire">
-              </div>
-              <div class="author-info">
-                <h4>Claire Dubois</h4>
-                <p>Nice</p>
-              </div>
+<section id="testimonials" class="bg-light">
+  <div class="container">
+    <h2>Témoignages</h2>
+    <div class="section-intro">
+      <p>Découvrez les témoignages de nos bénévoles, adoptants et soutiens qui partagent leur expérience.</p>
+    </div>
+
+    <div class="testimonials">
+      <div class="testimonial-slider" id="testimonial-slider">
+        <div class="testimonial-card">
+          <div class="quote"><i class="fas fa-quote-left"></i></div>
+          <p>"J'ai adopté Lucky grâce à l'association, et voir sa transformation est incroyable. D'un chien craintif à un compagnon joyeux et confiant, c'est une expérience qui a changé ma vie autant que la sienne."</p>
+          <div class="testimonial-author">
+            <div class="author-img">
+              <img src="https://www.photoprof.fr/images_dp/photographes/profil_vide.jpg" alt="Claire">
             </div>
-          </div>
-          
-          <div class="testimonial-card">
-            <div class="quote"><i class="fas fa-quote-left"></i></div>
-            <p>"Sauver des animaux a donné un nouveau sens à ma vie. Chaque week-end passé comme bénévole me rappelle pourquoi notre action est si importante. Voir la reconnaissance dans leurs yeux est ma plus belle récompense."</p>
-            <div class="testimonial-author">
-              <div class="author-img">
-                <img src="https://www.photoprof.fr/images_dp/photographes/profil_vide.jpg" alt="Lucas">
-              </div>
-              <div class="author-info">
-                <h4>Lucas Martin</h4>
-                <p>Rennes</p>
-              </div>
-            </div>
-          </div>
-          
-          <div class="testimonial-card">
-            <div class="quote"><i class="fas fa-quote-left"></i></div>
-            <p>"Nos ateliers en collège ont permis de sensibiliser plus de 300 élèves en 2024. Les voir s'investir pour la cause animale et changer leur regard est un espoir pour l'avenir."</p>
-            <div class="testimonial-author">
-              <div class="author-img">
-                <img src="https://www.photoprof.fr/images_dp/photographes/profil_vide.jpg" alt="Emma">
-              </div>
-              <div class="author-info">
-                <h4>Emma Legrand</h4>
-                <p>Toulouse</p>
-              </div>
-            </div>
-          </div>
-          
-          <div class="testimonial-card">
-            <div class="quote"><i class="fas fa-quote-left"></i></div>
-            <p>"Participer aux campagnes anti-braconnage a été une expérience intense. Savoir que notre action a contribué à sauver plusieurs éléphants de braconniers est une fierté immense."</p>
-            <div class="testimonial-author">
-              <div class="author-img">
-                <img src="https://www.photoprof.fr/images_dp/photographes/profil_vide.jpg" alt="Johan">
-              </div>
-              <div class="author-info">
-                <h4>Johan Petit</h4>
-                <p>Bordeaux</p>
-              </div>
-            </div>
-          </div>
-          
-          <div class="testimonial-card">
-            <div class="quote"><i class="fas fa-quote-left"></i></div>
-            <p>"Notre dernière pétition a recueilli 50 000 signatures en une semaine, un record ! C'est la preuve que de plus en plus de personnes se mobilisent pour les droits des animaux."</p>
-            <div class="testimonial-author">
-              <div class="author-img">
-                <img src="https://www.photoprof.fr/images_dp/photographes/profil_vide.jpg" alt="Sophie">
-              </div>
-              <div class="author-info">
-                <h4>Sophie Moreau</h4>
-                <p>Marseille</p>
-              </div>
+            <div class="author-info">
+              <h4>Claire Dubois</h4>
+              <p>Nice</p>
             </div>
           </div>
         </div>
-        
-        <div class="slider-nav">
-          <button class="prev-btn" id="prev-btn"><i class="fas fa-chevron-left"></i></button>
-          <button class="next-btn" id="next-btn"><i class="fas fa-chevron-right"></i></button>
+
+        <div class="testimonial-card">
+          <div class="quote"><i class="fas fa-quote-left"></i></div>
+          <p>"Sauver des animaux a donné un nouveau sens à ma vie. Chaque week-end passé comme bénévole me rappelle pourquoi notre action est si importante. Voir la reconnaissance dans leurs yeux est ma plus belle récompense."</p>
+          <div class="testimonial-author">
+            <div class="author-img">
+              <img src="https://www.photoprof.fr/images_dp/photographes/profil_vide.jpg" alt="Lucas">
+            </div>
+            <div class="author-info">
+              <h4>Lucas Martin</h4>
+              <p>Rennes</p>
+            </div>
+          </div>
         </div>
+
+        <div class="testimonial-card">
+          <div class="quote"><i class="fas fa-quote-left"></i></div>
+          <p>"Nos ateliers en collège ont permis de sensibiliser plus de 300 élèves en 2024. Les voir s'investir pour la cause animale et changer leur regard est un espoir pour l'avenir."</p>
+          <div class="testimonial-author">
+            <div class="author-img">
+              <img src="https://www.photoprof.fr/images_dp/photographes/profil_vide.jpg" alt="Emma">
+            </div>
+            <div class="author-info">
+              <h4>Emma Legrand</h4>
+              <p>Toulouse</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="quote"><i class="fas fa-quote-left"></i></div>
+          <p>"Participer aux campagnes anti-braconnage a été une expérience intense. Savoir que notre action a contribué à sauver plusieurs éléphants de braconniers est une fierté immense."</p>
+          <div class="testimonial-author">
+            <div class="author-img">
+              <img src="https://www.photoprof.fr/images_dp/photographes/profil_vide.jpg" alt="Johan">
+            </div>
+            <div class="author-info">
+              <h4>Johan Petit</h4>
+              <p>Bordeaux</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="quote"><i class="fas fa-quote-left"></i></div>
+          <p>"Notre dernière pétition a recueilli 50 000 signatures en une semaine, un record ! C'est la preuve que de plus en plus de personnes se mobilisent pour les droits des animaux."</p>
+          <div class="testimonial-author">
+            <div class="author-img">
+              <img src="https://www.photoprof.fr/images_dp/photographes/profil_vide.jpg" alt="Sophie">
+            </div>
+            <div class="author-info">
+              <h4>Sophie Moreau</h4>
+              <p>Marseille</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nouveaux témoignages (améliorés) -->
+        <div class="testimonial-card">
+          <div class="quote"><i class="fas fa-quote-left"></i></div>
+          <p>"Accueillir des chatons abandonnés en famille d’accueil a bouleversé mon quotidien. Leur redonner confiance, les voir jouer, ronronner, puis partir dans des foyers aimants… c’est une chaîne d’amour inoubliable."</p>
+          <div class="testimonial-author">
+            <div class="author-img">
+              <img src="https://www.photoprof.fr/images_dp/photographes/profil_vide.jpg" alt="Esteban">
+            </div>
+            <div class="author-info">
+              <h4>Esteban Roux</h4>
+              <p>Lyon</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="quote"><i class="fas fa-quote-left"></i></div>
+          <p>"Grâce aux formations dispensées par l’association, j’ai appris à intervenir en toute sécurité. Avoir pu sauver trois renards blessés, les soigner, puis les relâcher, restera l’un des plus beaux moments de ma vie."</p>
+          <div class="testimonial-author">
+            <div class="author-img">
+              <img src="https://www.photoprof.fr/images_dp/photographes/profil_vide.jpg" alt="Lola">
+            </div>
+            <div class="author-info">
+              <h4>Lola Chevallier</h4>
+              <p>Strasbourg</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="quote"><i class="fas fa-quote-left"></i></div>
+          <p>"Donner une petite partie de mon salaire chaque mois est devenu un réflexe. C’est une manière simple mais puissante de faire partie d’une grande aventure collective pour la vie animale."</p>
+          <div class="testimonial-author">
+            <div class="author-img">
+              <img src="https://www.photoprof.fr/images_dp/photographes/profil_vide.jpg" alt="Ebrar">
+            </div>
+            <div class="author-info">
+              <h4>Ebrar Demir</h4>
+              <p>Nantes</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="quote"><i class="fas fa-quote-left"></i></div>
+          <p>"Mon engagement au refuge pendant mes études m’a fait grandir. L’empathie, la responsabilité, la patience… Ces valeurs sont devenues des fondations solides dans ma vie d’adulte."</p>
+          <div class="testimonial-author">
+            <div class="author-img">
+              <img src="https://www.photoprof.fr/images_dp/photographes/profil_vide.jpg" alt="Titouan">
+            </div>
+            <div class="author-info">
+              <h4>Titouan Leclerc</h4>
+              <p>Montpellier</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="quote"><i class="fas fa-quote-left"></i></div>
+          <p>"Adopter Artyom, notre berger australien, a été une véritable bénédiction. Grâce aux conseils de l’association, son éducation s’est faite tout en douceur. Aujourd’hui, il est le complice de toute la famille."</p>
+          <div class="testimonial-author">
+            <div class="author-img">
+              <img src="https://www.photoprof.fr/images_dp/photographes/profil_vide.jpg" alt="Anna">
+            </div>
+            <div class="author-info">
+              <h4>Anna Kowalski</h4>
+              <p>Paris</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ajoute d'autres cartes ici -->
       </div>
     </div>
+  </div>
 </section>
 
 <!-- Section Galerie -->
@@ -1722,13 +1759,6 @@ footer p, footer li {
         </div>
       </div>
       
-      <div class="gallery-item">
-        <img src="https://globalvet.ca/wp-content/uploads/2021/06/Sans-titre-36-1024x684.png" alt="Adoption réussie">
-        <div class="gallery-overlay">
-          <i class="fas fa-search-plus"></i>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
   
@@ -1941,18 +1971,20 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 
     
     // Testimonial slider
-    const slider = document.getElementById('testimonial-slider');
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
-    
-    nextBtn.addEventListener('click', () => {
-      slider.scrollBy({ left: 320, behavior: 'smooth' });
-    });
-    
-    prevBtn.addEventListener('click', () => {
-      slider.scrollBy({ left: -320, behavior: 'smooth' });
-    });
-    
+const slider = document.getElementById('testimonial-slider');
+let scrollAmount = 0;
+
+function autoScroll() {
+  scrollAmount += 1; // vitesse, ajuste si besoin
+  if (scrollAmount >= slider.scrollWidth - slider.clientWidth) {
+    scrollAmount = 0; // reset au début
+  }
+  slider.scrollLeft = scrollAmount;
+  requestAnimationFrame(autoScroll);
+}
+
+autoScroll();
+
     // Back to top button
     const backToTopBtn = document.getElementById('back-to-top');
     
