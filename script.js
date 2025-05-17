@@ -53,17 +53,23 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     // Testimonial slider
 const slider = document.getElementById('testimonial-slider');
 let scrollAmount = 0;
+const speed = 0.5; // Plus petit = plus lent
 
 function autoScroll() {
-  scrollAmount += 1; // vitesse, ajuste si besoin
+  scrollAmount += speed;
   if (scrollAmount >= slider.scrollWidth - slider.clientWidth) {
-    scrollAmount = 0; // reset au début
+    // Retour instantané et invisible au début
+    slider.scrollLeft = 0;
+    scrollAmount = 0;
+  } else {
+    slider.scrollLeft = scrollAmount;
   }
-  slider.scrollLeft = scrollAmount;
   requestAnimationFrame(autoScroll);
 }
 
 autoScroll();
+
+
 
     // Back to top button
     const backToTopBtn = document.getElementById('back-to-top');
